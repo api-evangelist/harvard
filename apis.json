@@ -1,0 +1,56 @@
+{
+    "name": "Harvard",
+    "description": "Harvard University is devoted to excellence in teaching, learning, and research, and to developing leaders in many disciplines who make a difference globally. Harvard University is made up of 11 principal academic units.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1705-harvard.jpg",
+    "tags": [
+        "api provider",
+        "have api",
+        "universities",
+        "university in progress",
+        "university library",
+        "university science"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/harvard\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Harvard",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1705-harvard.jpg",
+            "humanURL": "http:\/\/library.harvard.edu",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/harvard-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/harvard-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/harvard-university"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/library.harvard.edu\/open-metadata#DASH-API"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/Harvard"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/library.harvard.edu"
+        }
+    ]
+}
