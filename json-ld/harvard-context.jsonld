@@ -1,0 +1,95 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "harvard": "https://data.harvard.edu/vocab#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "logo": "schema:logo",
+    "sameAs": "schema:sameAs",
+    "foundingDate": "schema:foundingDate",
+    "location": "schema:location",
+    "department": "schema:department",
+    "CollegeOrUniversity": "schema:CollegeOrUniversity",
+    "Organization": "schema:Organization",
+
+    "api": {
+      "@id": "harvard:api",
+      "@container": "@set"
+    },
+    "apiName": "schema:name",
+    "apiDescription": "schema:description",
+    "humanURL": {
+      "@id": "schema:documentation",
+      "@type": "@id"
+    },
+    "baseURL": {
+      "@id": "harvard:baseURL",
+      "@type": "@id"
+    },
+
+    "object": "harvard:Object",
+    "person": "harvard:Person",
+    "exhibition": "harvard:Exhibition",
+    "publication": "harvard:Publication",
+    "gallery": "harvard:Gallery",
+    "classification": "harvard:Classification",
+    "culture": "harvard:Culture",
+    "medium": "harvard:Medium",
+    "period": "harvard:Period",
+    "place": "schema:Place",
+    "image": "schema:ImageObject",
+
+    "bibRecord": "harvard:BibliographicRecord",
+    "collection": "schema:Collection",
+    "identifier": "schema:identifier",
+    "title": "schema:name",
+    "creator": "schema:creator",
+    "subject": "schema:about",
+    "date": "schema:dateCreated",
+    "format": "schema:encodingFormat",
+    "language": "schema:inLanguage",
+    "rights": "schema:license"
+  },
+  "@type": "CollegeOrUniversity",
+  "name": "Harvard University",
+  "url": "https://www.harvard.edu/",
+  "description": "Harvard University (Cambridge, MA; founded 1636) maintains a public developer footprint including the Harvard Art Museums API, the Harvard Library LibraryCloud Open Metadata API, the DASH OAI-PMH repository, and the HUIT API Portal.",
+  "foundingDate": "1636",
+  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "location": {
+    "@type": "schema:Place",
+    "name": "Cambridge, Massachusetts, USA"
+  },
+  "sameAs": [
+    "https://twitter.com/Harvard",
+    "https://www.linkedin.com/school/harvard-university/",
+    "https://github.com/harvard"
+  ],
+  "api": [
+    {
+      "apiName": "Harvard Art Museums API",
+      "apiDescription": "REST/JSON API to the Harvard Art Museums' collections data across 21 resources, with IIIF image services.",
+      "humanURL": "https://github.com/harvardartmuseums/api-docs",
+      "baseURL": "https://api.harvardartmuseums.org"
+    },
+    {
+      "apiName": "Harvard Library LibraryCloud API (Open Metadata)",
+      "apiDescription": "Open metadata hub aggregating Harvard bibliographic metadata returning normalized MODS or Dublin Core.",
+      "humanURL": "https://library.harvard.edu/services-tools/harvard-library-apis-datasets",
+      "baseURL": "https://api.lib.harvard.edu/v2/items.json"
+    },
+    {
+      "apiName": "Harvard DASH OAI-PMH",
+      "apiDescription": "OAI-PMH 2.0 metadata harvesting endpoint for the DASH open-access institutional repository.",
+      "humanURL": "https://library.harvard.edu/services-tools/dash",
+      "baseURL": "https://dash.harvard.edu/server/oai/request"
+    },
+    {
+      "apiName": "Harvard API Portal (HUIT)",
+      "apiDescription": "HUIT's central catalog of HarvardKey-gated administrative APIs (Courses, Person, Dining, Zoom, Library Catalog).",
+      "humanURL": "https://portal.apis.huit.harvard.edu/apis"
+    }
+  ]
+}
