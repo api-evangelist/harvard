@@ -1,0 +1,135 @@
+aid: harvard
+name: Harvard University
+description: >-
+  Harvard University (Cambridge, MA; founded 1636; QS World 2025 #4) maintains
+  a substantial public developer footprint spread across several units. Its
+  most prominent fully public, key-based APIs are the Harvard Art Museums API
+  and the Harvard Library LibraryCloud / Open Metadata API, both serving open
+  collections data. Harvard University Information Technology (HUIT) operates a
+  central API Portal (HarvardKey-gated) cataloging administrative APIs
+  (Courses, Person, Dining, Zoom, Library Catalog), and the DASH institutional
+  repository exposes an open OAI-PMH metadata feed.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/harvard/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Libraries
+  - Museums
+  - Open Metadata
+  - OAI-PMH
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: harvard:art-museums
+    name: Harvard Art Museums API
+    description: >-
+      REST/JSON API to the Harvard Art Museums' collections data across 21
+      resources (Object, Person, Exhibition, Publication, Gallery,
+      Classification, Culture, Medium, Period, Place, Image, and more), with
+      pagination, aggregations, and IIIF image services. Free for
+      non-commercial use; requires an API key.
+    humanURL: https://github.com/harvardartmuseums/api-docs
+    baseURL: https://api.harvardartmuseums.org
+    tags:
+      - Museums
+      - Art
+      - Collections
+      - Cultural Heritage
+      - IIIF
+    properties:
+      - type: Documentation
+        url: https://github.com/harvardartmuseums/api-docs
+      - type: SignUp
+        url: https://harvardartmuseums.org/collections/api
+      - type: GitHub
+        url: https://github.com/harvardartmuseums
+  - aid: harvard:librarycloud
+    name: Harvard Library LibraryCloud API (Open Metadata)
+    description: >-
+      Open metadata hub aggregating Harvard bibliographic metadata (12.7M+ bib
+      records, image records, ArchivesSpace finding aids). The public Item API
+      returns normalized MODS or Dublin Core; a Collections API is also
+      available. No API key required for the public Item API.
+    humanURL: https://library.harvard.edu/services-tools/harvard-library-apis-datasets
+    baseURL: https://api.lib.harvard.edu/v2/items.json
+    tags:
+      - Libraries
+      - Open Metadata
+      - Bibliographic
+      - MODS
+      - Dublin Core
+    properties:
+      - type: Documentation
+        url: https://library.harvard.edu/services-tools/harvard-library-apis-datasets
+      - type: GitHub
+        url: https://github.com/harvard-library/librarycloud
+  - aid: harvard:dash
+    name: Harvard DASH OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata harvesting endpoint for DASH (Digital Access to
+      Scholarship at Harvard), the open-access institutional repository of
+      58,000+ scholarly works. Open, no key required.
+    humanURL: https://library.harvard.edu/services-tools/dash
+    baseURL: https://dash.harvard.edu/server/oai/request
+    tags:
+      - Repository
+      - Open Access
+      - OAI-PMH
+      - Scholarship
+    properties:
+      - type: Documentation
+        url: https://library.harvard.edu/services-tools/dash
+      - type: Website
+        url: https://dash.harvard.edu/home
+  - aid: harvard:api-portal
+    name: Harvard API Portal (HUIT)
+    description: >-
+      HUIT's central catalog of administrative APIs — Courses, Person Data
+      Service, Library Catalog (Ex Libris Primo), Dining, HR Departments,
+      Zoom, Emailer, and Generative AI APIs. OpenAPI specs are viewable in the
+      portal; base URLs are gated behind HarvardKey login, app registration,
+      and per-API access grant.
+    humanURL: https://portal.apis.huit.harvard.edu/apis
+    tags:
+      - Courses
+      - Identity
+      - Administrative
+      - OpenAPI
+    properties:
+      - type: Documentation
+        url: https://portal.apis.huit.harvard.edu/apis
+      - type: SignUp
+        url: https://portal.apis.huit.harvard.edu/
+      - type: DeveloperPortal
+        url: https://data.harvard.edu/apis
+common:
+  - type: Website
+    url: https://www.harvard.edu/
+  - type: DeveloperPortal
+    url: https://data.harvard.edu/developers
+  - type: GitHub
+    url: https://github.com/harvard
+  - type: Status
+    url: https://status.huit.harvard.edu/
+  - type: Twitter
+    url: https://twitter.com/Harvard
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/harvard-university/
+  - type: Plans
+    url: plans/harvard-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/harvard-rate-limits.yml
+  - type: FinOps
+    url: finops/harvard-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

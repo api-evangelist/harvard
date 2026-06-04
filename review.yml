@@ -1,0 +1,41 @@
+name: Harvard University
+description: Harvard University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/harvard/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 4
+    summary: >-
+      Harvard has a strong, multi-unit public developer footprint. Two genuinely open
+      public APIs were verified live: the Harvard Art Museums API (api.harvardartmuseums.org,
+      free API key, non-commercial, ~2,500 calls/day) and the Harvard Library LibraryCloud
+      Item API (api.lib.harvard.edu/v2/items.json, no key — returned live MODS JSON with
+      630,138 results for a test query). The DASH institutional repository OAI-PMH endpoint
+      returned valid OAI-PMH 2.0 XML. HUIT operates a central API Portal cataloging
+      administrative APIs (Courses, Person, Dining, Zoom, Library Catalog, GenAI) whose
+      OpenAPI docs are public but whose base URLs are gated behind HarvardKey login and app
+      registration. GitHub presence verified across harvard, huit, harvardartmuseums, and
+      harvard-library orgs.
+    endpoints:
+      - url: https://api.harvardartmuseums.org
+        status: 200
+        note: Requires apikey param; docs at github.com/harvardartmuseums/api-docs.
+      - url: https://api.lib.harvard.edu/v2/items.json
+        status: 200
+        note: LibraryCloud Item API — no key; returned live MODS JSON.
+      - url: https://dash.harvard.edu/server/oai/request
+        status: 200
+        note: DASH OAI-PMH — Identify returned valid OAI-PMH 2.0 XML.
+      - url: https://portal.apis.huit.harvard.edu/apis
+        status: 200
+        note: HUIT API catalog; individual API base URLs gated behind HarvardKey.
+      - url: https://github.com/harvard
+        status: 200
+        note: Primary Harvard University GitHub org.
+      - url: https://status.huit.harvard.edu/
+        status: 200
+        note: HUIT status page.
+      - url: https://github.com/harvardlibrary
+        status: 404
+        note: Does not exist; correct org is github.com/harvard-library.
