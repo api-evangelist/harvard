@@ -57,7 +57,7 @@
   "url": "https://www.harvard.edu/",
   "description": "Harvard University (Cambridge, MA; founded 1636) maintains a public developer footprint including the Harvard Art Museums API, the Harvard Library LibraryCloud Open Metadata API, the DASH OAI-PMH repository, and the HUIT API Portal.",
   "foundingDate": "1636",
-  "logo": "https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg",
+  "logo": "https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg",
   "location": {
     "@type": "schema:Place",
     "name": "Cambridge, Massachusetts, USA"
