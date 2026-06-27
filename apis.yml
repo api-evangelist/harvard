@@ -46,7 +46,7 @@ apis:
     properties:
       - type: Documentation
         url: https://github.com/harvardartmuseums/api-docs
-      - type: SignUp
+      - type: Signup
         url: https://harvardartmuseums.org/collections/api
       - type: GitHub
         url: https://github.com/harvardartmuseums
@@ -105,7 +105,7 @@ apis:
     properties:
       - type: Documentation
         url: https://portal.apis.huit.harvard.edu/apis
-      - type: SignUp
+      - type: Signup
         url: https://portal.apis.huit.harvard.edu/
       - type: DeveloperPortal
         url: https://data.harvard.edu/apis
