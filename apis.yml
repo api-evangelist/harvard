@@ -110,6 +110,10 @@ apis:
       - type: DeveloperPortal
         url: https://data.harvard.edu/apis
 common:
+  - type: VulnerabilityDisclosure
+    url: security/harvard-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/harvard-domain-security.yml
   - type: Website
     url: https://www.harvard.edu/
   - type: DeveloperPortal
