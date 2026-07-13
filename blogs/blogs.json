@@ -5,24 +5,26 @@
       "source": "https://www.harvard.edu/",
       "feed_url": "https://news.harvard.edu/gazette/feed/",
       "title": "Harvard Gazette",
-      "saved": 0,
-      "method": "none"
+      "saved": 46,
+      "method": "feed"
     },
     {
       "source": "https://library.harvard.edu/about/news",
       "feed_url": "https://library.harvard.edu/about/news",
       "title": "Harvard Library News",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     },
     {
       "source": "https://harvardartmuseums.org/",
       "feed_url": "https://harvardartmuseums.org/tour/index-magazine",
       "title": "Harvard Art Museums Index Magazine",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "fetch_failed: HTTPError"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-03T00:00:00Z"
+  "post_count": 53,
+  "fetched": "2026-07-11T11:43:46Z"
 }
