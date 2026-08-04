@@ -5,7 +5,7 @@
       "source": "https://www.harvard.edu/",
       "feed_url": "https://news.harvard.edu/gazette/feed/",
       "title": "Harvard Gazette",
-      "saved": 46,
+      "saved": 9,
       "method": "feed"
     },
     {
@@ -25,6 +25,6 @@
       "error": "fetch_failed: HTTPError"
     }
   ],
-  "post_count": 53,
-  "fetched": "2026-07-11T11:43:46Z"
+  "post_count": 75,
+  "fetched": "2026-08-01T15:38:58Z"
 }
