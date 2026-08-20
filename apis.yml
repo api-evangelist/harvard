@@ -209,6 +209,12 @@ apis:
     tags:
       - Museums
       - Art
+      - Collection
+      - Cultural Heritage
+      - IIIF
+    tags_raw:
+      - Museums
+      - Art
       - Collections
       - Cultural Heritage
       - IIIF
@@ -259,6 +265,12 @@ apis:
     humanURL: https://harvard-lil.github.io/lawskills-hub/
     baseURL: https://harvard-lil.github.io/lawskills-hub
     tags:
+      - Agent Skills
+      - Legal Education
+      - Artificial Intelligence
+      - OpenAPI
+      - Static API
+    tags_raw:
       - Agent Skills
       - Legal Education
       - AI
