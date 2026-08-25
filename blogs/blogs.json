@@ -2,29 +2,31 @@
   "repo": "harvard",
   "feeds": [
     {
-      "source": "https://www.harvard.edu/",
+      "source": "https://news.harvard.edu/gazette/feed/",
       "feed_url": "https://news.harvard.edu/gazette/feed/",
-      "title": "Harvard Gazette",
-      "saved": 5,
+      "title": "",
+      "saved": 0,
       "method": "feed"
     },
     {
       "source": "https://library.harvard.edu/about/news",
-      "feed_url": "https://library.harvard.edu/about/news",
-      "title": "Harvard Library News",
+      "feed_url": "https://library.harvard.edu/about/news/feed/",
+      "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "discovered"
     },
     {
-      "source": "https://harvardartmuseums.org/",
-      "feed_url": "https://harvardartmuseums.org/tour/index-magazine",
-      "title": "Harvard Art Museums Index Magazine",
-      "saved": 0,
-      "method": "none",
-      "error": "fetch_failed: HTTPError"
+      "source": "https://harvardartmuseums.org/tour/index-magazine",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://status.huit.harvard.edu/",
+      "feed_url": "https://status.huit.harvard.edu/history.atom",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
     }
   ],
-  "post_count": 88,
-  "fetched": "2026-08-15T12:11:08Z"
+  "post_count": 97,
+  "fetched": "2026-08-22T20:20:02Z"
 }
