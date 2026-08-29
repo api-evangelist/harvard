@@ -1233,6 +1233,9 @@ apis:
   - type: Examples
     url: examples/harvard-lil-lawskills-personas.json
 common:
+  - type: CapabilityMap
+    url: capabilities/harvard-capability-edges.yml
+    name: Harvard University Business Capability Map
   - type: Website
     url: https://www.harvard.edu/
   - type: About
