@@ -732,6 +732,8 @@ apis:
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/api
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -1018,6 +1020,8 @@ apis:
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/api
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -1105,7 +1109,8 @@ apis:
   description: Save Auxiliary File With Version
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/api
-  tags:
+  tags: []
+  tags_raw:
   - saveAuxiliaryFileWithVersion
   properties:
   - type: OpenAPI
@@ -1171,7 +1176,8 @@ apis:
   description: Uploads a logo for a dataset
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/api
-  tags:
+  tags: []
+  tags_raw:
   - uploadDatasetLogo
   properties:
   - type: OpenAPI
@@ -1194,6 +1200,8 @@ apis:
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
