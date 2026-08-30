@@ -1,0 +1,47 @@
+specification: API Commons Scopes
+specificationVersion: '0.1'
+provider: Harvard University
+providerId: harvard
+generated: '2026-08-19'
+method: probed
+source: >-
+  Probes of every institution-operated surface listed in apis.yml, 2026-08-19, checking for
+  OAuth scope declarations, securitySchemes with scope maps, and discovery documents.
+x-operator: institution
+description: >-
+  Harvard publishes NO OAuth scope vocabulary on any surface an outside developer can reach.
+  This artifact records that absence with evidence rather than leaving the slot empty, because
+  an absent scopes file and a verified-empty scopes file are different findings. The one place
+  scopes plausibly exist - the HUIT API Portal's OAuth application registration - is behind
+  HarvardKey, so the vocabulary could not be read.
+scopes: []
+findings:
+  - surface: Harvard Dataverse native REST API
+    result: no_scopes
+    evidence:
+      - url: https://dataverse.harvard.edu/openapi
+        status: 200
+        note: >-
+          The 450-path, 574-operation contract Harvard Dataverse serves declares no
+          components.securitySchemes block at all and no top-level security requirement.
+          Authorization is a bearer-style API token with no scope dimension.
+  - surface: Harvard Art Museums API
+    result: no_scopes
+    evidence:
+      - url: https://api.harvardartmuseums.org/object?size=1
+        status: 401
+        note: Single flat API key. No scope, tier or grant vocabulary documented.
+  - surface: Harvard API Portal (HUIT)
+    result: unreadable
+    evidence:
+      - url: https://portal.apis.huit.harvard.edu/apis
+        status: 200
+        note: >-
+          Apigee developer portal. OAuth app registration and any per-product scope
+          vocabulary sit behind HarvardKey; the anonymous response is an Angular shell.
+  - surface: Harvard DASH / LibraryCloud / OAI-PMH
+    result: not_applicable
+    evidence:
+      - url: https://api.lib.harvard.edu/v2/items.json?title=chess&limit=1
+        status: 200
+        note: Fully open read surfaces with no authorization layer to scope.

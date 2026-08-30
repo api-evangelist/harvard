@@ -1,0 +1,107 @@
+x-specification: Spectral Ruleset
+x-specificationVersion: '1.0'
+x-provider: Harvard University
+x-providerId: harvard
+x-generated: '2026-08-19'
+x-method: generated
+x-source: >-
+  Authored by API Evangelist from defects observed in live probes of Harvard-operated surfaces
+  on 2026-08-19. NOT published by Harvard. Harvard publishes no API design guide, no style
+  guide and no linting ruleset on any reachable surface.
+x-operator: institution
+x-note: >-
+  This ruleset is API Evangelist's, applied TO Harvard - it must never be read as a governance
+  artifact Harvard authored. Every rule below encodes a specific failure this profile actually
+  observed, so the ruleset is a remediation list as much as a linter.
+rules:
+  harvard-servers-declared:
+    description: >-
+      Every contract must declare servers[]. The Dataverse OpenAPI Harvard serves at
+      /openapi emits no servers block at all, so a client that downloads it cannot tell which
+      of the world's Dataverse installations it describes. This is the single change that
+      would make Harvard's largest contract self-identifying.
+    given: $
+    severity: error
+    then:
+      field: servers
+      function: truthy
+  harvard-info-contact:
+    description: >-
+      info.contact must name the operating unit. Harvard has no central API program, so the
+      unit is the only meaningful owner and omitting it leaves a caller with nowhere to go.
+    given: $.info
+    severity: error
+    then:
+      field: contact
+      function: truthy
+  harvard-security-schemes-declared:
+    description: >-
+      A contract with authenticated operations must declare components.securitySchemes. The
+      Dataverse contract declares none despite requiring an X-Dataverse-key header for deposit
+      and administration, which is only discoverable from a CORS header.
+    given: $.components
+    severity: error
+    then:
+      field: securitySchemes
+      function: truthy
+  harvard-client-error-not-500:
+    description: >-
+      Malformed client input must not produce a 5xx. api.lib.harvard.edu returns a Tomcat HTML
+      500 for a non-numeric limit parameter that should be a 400.
+    given: $.paths[*][*].responses
+    severity: error
+    then:
+      field: '400'
+      function: truthy
+  harvard-error-response-machine-readable:
+    description: >-
+      Error responses must be JSON, not HTML. Three of Harvard's five surfaces emit HTML or
+      bare text on failure, which no agent can parse.
+    given: $.paths[*][*].responses[?(@property.match(/^4|^5/))].content
+    severity: warn
+    then:
+      field: application/json
+      function: truthy
+  harvard-auth-error-distinguishable:
+    description: >-
+      A missing credential and an invalid credential must be distinguishable. The Harvard Art
+      Museums API returns a byte-identical 401 "Unauthorized" for both.
+    given: $.paths[*][*].responses
+    severity: warn
+    then:
+      field: '401'
+      function: truthy
+  harvard-operation-id:
+    description: Every operation needs a stable operationId for agent and SDK generation.
+    given: $.paths[*][get,put,post,delete,patch]
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+  harvard-operation-description:
+    description: Every operation needs a description an agent can act on, not just a summary.
+    given: $.paths[*][get,put,post,delete,patch]
+    severity: warn
+    then:
+      field: description
+      function: truthy
+  harvard-response-examples:
+    description: >-
+      Responses should carry examples. Harvard's largest contract carries none, which is why
+      this profile had to capture examples by probing instead.
+    given: $.paths[*][*].responses[?(@property.match(/^2/))].content[*]
+    severity: warn
+    then:
+      field: examples
+      function: truthy
+  harvard-no-vendor-server:
+    description: >-
+      An institution contract must not declare a shared vendor host in servers[]. This is the
+      university-pipeline rule: if the server is api.figshare.com or a comparable multi-tenant
+      vendor endpoint, the contract belongs in the vendor's repo, not Harvard's.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: '(figshare|elsevierpure|exlibrisgroup|symplectic|openrepository|instructure|workday)\.com'

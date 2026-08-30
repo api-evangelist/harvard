@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/harvard/main/json-schema/harvard-librarycloud-item.schema.json",
+  "title": "Harvard Library LibraryCloud Item response",
+  "description": "Structure of a response from the Harvard Library LibraryCloud (Open Metadata) Item API. Derived by inference from a single live 200 response captured on 2026-08-19 (examples/harvard-librarycloud-item-response.json). Harvard publishes no schema for this API; this is API Evangelist's derivation, not Harvard's contract. It describes the shape observed, and optionality/enums were NOT guessed - no required[] is asserted.",
+  "x-provenance": {
+    "generated": "2026-08-19",
+    "method": "derived",
+    "source": "https://api.lib.harvard.edu/v2/items.json?title=chess&limit=1",
+    "x-operator": "institution",
+    "note": "Inferred from one observed response. Not published by Harvard."
+  },
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "maxPageableSet": {
+          "type": "string"
+        },
+        "numFound": {
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "start": {
+          "type": "integer"
+        }
+      }
+    },
+    "items": {
+      "type": "object",
+      "properties": {
+        "mods": {
+          "type": "object",
+          "properties": {
+            "@version": {
+              "type": "string"
+            },
+            "titleInfo": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "name": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@nameTitleGroup": {
+                    "type": "string"
+                  },
+                  "@type": {
+                    "type": "string"
+                  },
+                  "namePart": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "object",
+                    "properties": {
+                      "roleTerm": {
+                        "type": "object",
+                        "properties": {
+                          "@type": {
+                            "type": "string"
+                          },
+                          "#text": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "typeOfResource": {
+              "type": "string"
+            },
+            "genre": {
+              "type": "object",
+              "properties": {
+                "@authority": {
+                  "type": "string"
+                },
+                "#text": {
+                  "type": "string"
+                }
+              }
+            },
+            "originInfo": {
+              "type": "object",
+              "properties": {
+                "place": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "placeTerm": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "@type": {
+                              "type": "string"
+                            },
+                            "@authority": {
+                              "type": "string"
+                            },
+                            "#text": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "dateIssued": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "@encoding": {
+                        "type": "string"
+                      },
+                      "#text": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "issuance": {
+                  "type": "string"
+                },
+                "agent": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "namePart": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "edition": {
+                  "type": "string"
+                }
+              }
+            },
+            "language": {
+              "type": "object",
+              "properties": {
+                "languageTerm": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "@type": {
+                        "type": "string"
+                      },
+                      "@authority": {
+                        "type": "string"
+                      },
+                      "#text": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "physicalDescription": {
+              "type": "object",
+              "properties": {
+                "form": {
+                  "type": "object",
+                  "properties": {
+                    "@authority": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "extent": {
+                  "type": "string"
+                }
+              }
+            },
+            "abstract": {
+              "type": "object",
+              "properties": {
+                "@type": {
+                  "type": "string"
+                },
+                "#text": {
+                  "type": "string"
+                }
+              }
+            },
+            "note": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@type": {
+                    "type": "string"
+                  },
+                  "#text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "subject": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "geographicCode": {
+                    "type": "object",
+                    "properties": {
+                      "@authority": {
+                        "type": "string"
+                      },
+                      "#text": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "classification": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@authority": {
+                    "type": "string"
+                  },
+                  "#text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "relatedItem": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "titleInfo": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "identifier": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "@type": {
+                    "type": "string"
+                  },
+                  "#text": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "location": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "physicalLocation": {
+                    "type": "object",
+                    "properties": {
+                      "@displayLabel": {
+                        "type": "string"
+                      },
+                      "@type": {
+                        "type": "string"
+                      },
+                      "@valueURI": {
+                        "type": "string"
+                      },
+                      "#text": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "shelfLocator": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "extension": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "librarycloud": {
+                    "type": "object",
+                    "properties": {
+                      "HarvardRepositories": {
+                        "type": "object",
+                        "properties": {
+                          "HarvardRepository": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "originalDocument": {
+                        "type": "string"
+                      },
+                      "priorrecordids": {
+                        "type": "object",
+                        "properties": {
+                          "recordIdentifier": {
+                            "type": "object",
+                            "properties": {
+                              "@source": {
+                                "type": "string"
+                              },
+                              "#text": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "processingDate": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "recordInfo": {
+              "type": "object",
+              "properties": {
+                "descriptionStandard": {
+                  "type": "string"
+                },
+                "recordContentSource": {
+                  "type": "object",
+                  "properties": {
+                    "@authority": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recordCreationDate": {
+                  "type": "object",
+                  "properties": {
+                    "@encoding": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recordChangeDate": {
+                  "type": "object",
+                  "properties": {
+                    "@encoding": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recordIdentifier": {
+                  "type": "object",
+                  "properties": {
+                    "@source": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "recordOrigin": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: Harvard University
+providerId: harvard
+generated: '2026-08-19'
+method: probed
+source: Version strings and status codes read live from each surface, 2026-08-19.
+x-operator: institution
+description: >-
+  Versioning and lifecycle posture per institution-operated surface. Harvard versions in the
+  URL path where it versions at all, and publishes no deprecation policy, no sunset headers and
+  no changelog for any public surface. The one real lifecycle event in this profile is the
+  retirement of the Caselaw Access Project REST API, which Harvard's Library Innovation Lab
+  handed to the Free Law Project in 2024 while continuing to serve the bulk data itself.
+surfaces:
+  - surface: Harvard Dataverse native REST API
+    version: 6.10.1
+    build: iqss-4
+    versioning: software release, exposed at /api/info/version
+    evidence:
+      - url: https://dataverse.harvard.edu/api/info/version
+        status: 200
+        body: '{"status":"OK","data":{"version":"6.10.1","build":"iqss-4"}}'
+    deprecation_policy: none published
+    changelog: >-
+      Upstream only, at github.com/IQSS/dataverse releases. No installation-level changelog
+      for the Harvard deployment.
+  - surface: Harvard Library LibraryCloud Item API
+    version: v2
+    versioning: URL path (/v2/items.json)
+    evidence:
+      - url: https://api.lib.harvard.edu/v2/items.json?title=chess&limit=1
+        status: 200
+    deprecation_policy: none published
+    note: A v1 is not reachable; no migration or sunset notice is published for it.
+  - surface: Harvard DASH
+    x-operator: tenant
+    x-tenant-of: 4Science (managed DSpace)
+    version: OAI-PMH 2.0 / DSpace 7 REST
+    versioning: protocol version, not product version - and the version cadence is the
+      vendor's, not Harvard's
+    evidence:
+      - url: https://dash.harvard.edu/server/oai/request?verb=Identify
+        status: 200
+      - url: https://dash.harvard.edu/server/api
+        status: 200
+    deprecation_policy: none published
+  - surface: Harvard Art Museums API
+    version: unversioned
+    versioning: none - paths are bare resource names (/object, /person, /exhibition)
+    evidence:
+      - url: https://api.harvardartmuseums.org/object?size=1
+        status: 401
+      - url: https://api.harvardartmuseums.org
+        status: 200
+        note: >-
+          The API root 301-redirects to https://github.com/harvardartmuseums/api-docs. The
+          documentation is 25 markdown files in a GitHub repo, with no machine-readable
+          contract and no version marker.
+    deprecation_policy: none published
+  - surface: Legal Ed Skills Hub (Harvard Library Innovation Lab)
+    version: 1.0.0
+    versioning: info.version in the OpenAPI document
+    evidence:
+      - url: https://harvard-lil.github.io/lawskills-hub/actions/openapi.yaml
+        status: 200
+    deprecation_policy: none published
+    note: >-
+      The newest surface in this profile and the only one that ships an OpenAPI 3.1 document
+      written for the surface rather than emitted by generic software.
+events:
+  - date: '2024'
+    surface: Caselaw Access Project API (api.case.law)
+    event: retired
+    x-operator: institution
+    evidence:
+      - url: https://api.case.law/v1/
+        status: 301
+        note: 301-redirects to https://case.law/docs/ (Caselaw Access Project documentation).
+      - url: https://static.case.law/
+        status: 200
+        note: >-
+          Bulk static data still served by Harvard - a directory listing of reporter
+          collections (a2d, a3d, abb-ct-app, ...).
+    note: >-
+      The Harvard Law School Library Innovation Lab retired the live CAP REST API and
+      transferred API operations to the Free Law Project's CourtListener. Harvard continues to
+      operate the static bulk-data surface at static.case.law. A rare and creditable thing in
+      this cohort: a real, executed, publicly documented API sunset rather than a silent 404.

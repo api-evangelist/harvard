@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/harvard/main/json-schema/harvard-lil-lawskills-persona-index.schema.json",
+  "title": "Harvard LIL Legal Ed Skills Hub persona index",
+  "description": "Structure of GET /actions/personas.json on the Harvard Law School Library Innovation Lab's Legal Ed Skills Hub. Derived from a live 200 response captured 2026-08-19. NOTE: the Hub publishes its own OpenAPI 3.1 document with a PersonaIndex schema at openapi/harvard-lil-legal-ed-skills-hub-openapi.yml - that published schema is authoritative and this derivation exists only as a captured cross-check of it.",
+  "x-provenance": {
+    "generated": "2026-08-19",
+    "method": "derived",
+    "source": "https://harvard-lil.github.io/lawskills-hub/actions/personas.json",
+    "x-operator": "institution",
+    "supersededBy": "openapi/harvard-lil-legal-ed-skills-hub-openapi.yml#/components/schemas/PersonaIndex"
+  },
+  "type": "object",
+  "properties": {
+    "personas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "objective": {
+            "type": "string"
+          },
+          "skill_count": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "personas": [
+    {
+      "id": "professor",
+      "label": "Law Professor",
+      "description": "Always-on assistant for law professors and legal educators. Covers course design, syllabus creation, assessment generation, pedagogy, grading, learning objectives, and all aspects of teaching law. Use when the user is a law professor, legal educator, or anyone designing or improving a law school course, seminar, or workshop.",
+      "objective": "Improve the quality of legal education",
+      "skill_count": 3
+    },
+    {
+      "id": "student",
+      "label": "Law Student",
+      "description": "Always-on assistant for law students. Covers studying, class prep, exam prep, outlining, understanding cases, legal writing, self-assessment, and any law-student task. Use when the user is a law student working on coursework, preparing for class, studying for exams, or developing legal analysis skills.",
+      "objective": "Coach, encourage, and check understanding",
+      "skill_count": 3
+    },
+    {
+      "id": "pro-se",
+      "label": "Pro Se Litigant",
+      "description": "Always-on assistant for self-represented litigants and people dealing with legal issues without a lawyer. Triggers when someone is trying to understand a legal situation, navigate the legal system, find legal help, fill out court forms, or do legal research on their own behalf.",
+      "objective": "Orient and connect",
+      "skill_count": 2
+    },
+    {
+      "id": "cle",
+      "label": "Continuing Legal Education",
+      "description": "Always-on assistant for practicing attorneys focused on professional development and continuing education. Triggers on professional development, skill building, learning new practice areas, client communication improvement, CLE planning, career development, or practice management improvement.",
+      "objective": "Coach and build skills",
+      "skill_count": 3
+    },
+    {
+      "id": "skill-developer",
+      "label": "Skill Developer",
+      "description": "Always-on assistant for creating, reviewing, and testing pedagogical AI skills for the Legal Ed Skills Hub. Triggers on writing new skills, reviewing skill quality, evaluating skill pedagogy, testing skills against rubrics, defining evaluation criteria, or any task related to building and improving agent skills for legal education.",
+      "objective": "Help subject matter experts create effective pedagogical AI skills",
+      "skill_count": 3
+    }
+  ],
+  "description": "Legal Ed Skills Hub persona index. Each persona targets a specific type of user and educational objective. Read the description and objective fields to decide which persona matches the user's needs, then fetch full detail at /actions/personas/{id}.json."
+}

@@ -1,0 +1,113 @@
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: Harvard University
+providerId: harvard
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live authentication probes of each Harvard-operated surface, 2026-08-19, plus the CORS
+  and error responses those hosts returned.
+x-operator: institution
+description: >-
+  Authentication posture per institution-operated surface. Harvard has no single front door:
+  each unit authenticates its own way, ranging from wholly open harvesting endpoints to a
+  HarvardKey/SAML-gated central portal. There is no institution-wide developer identity.
+schemes:
+  - surface: Harvard Art Museums API
+    baseURL: https://api.harvardartmuseums.org
+    x-operator: institution
+    type: apiKey
+    in: query
+    name: apikey
+    signup: https://harvardartmuseums.org/collections/api
+    evidence:
+      - url: https://api.harvardartmuseums.org/object?size=1
+        status: 401
+        note: 'Anonymous request returns 401 with a bare text/plain body "Unauthorized".'
+      - url: https://api.harvardartmuseums.org/object?apikey=notreal&size=1
+        status: 401
+        note: An invalid key returns the same undifferentiated 401 as a missing key.
+    terms: Free key, non-commercial use.
+  - surface: Harvard Library LibraryCloud (Open Metadata) Item API
+    baseURL: https://api.lib.harvard.edu/v2/items.json
+    x-operator: institution
+    type: none
+    evidence:
+      - url: https://api.lib.harvard.edu/v2/items.json?title=chess&limit=1
+        status: 200
+        note: Anonymous request returns normalized MODS JSON. No key, no registration.
+  - surface: Harvard DASH OAI-PMH
+    baseURL: https://dash.harvard.edu/server/oai/request
+    x-operator: tenant
+    x-tenant-of: 4Science (managed DSpace) - dash.harvard.edu CNAMEs to harvard-dash.prod.4science.cloud
+    type: none
+    evidence:
+      - url: https://dash.harvard.edu/server/oai/request?verb=Identify
+        status: 200
+  - surface: Harvard DASH DSpace 7 REST API
+    baseURL: https://dash.harvard.edu/server/api
+    x-operator: tenant
+    x-tenant-of: 4Science (managed DSpace)
+    type: none
+    note: >-
+      Read access is anonymous. Write and administrative operations use DSpace's own
+      session/CSRF flow, which is the software's scheme, not a Harvard-published one.
+    evidence:
+      - url: https://dash.harvard.edu/server/api
+        status: 200
+  - surface: Harvard Dataverse native REST API
+    baseURL: https://dataverse.harvard.edu/api
+    x-operator: institution
+    type: apiKey
+    in: header
+    name: X-Dataverse-key
+    note: >-
+      Public read operations (search, info, access to published data) are anonymous. Deposit,
+      draft access and administration require an API token issued to a Harvard Dataverse account.
+    evidence:
+      - url: https://dataverse.harvard.edu/api/info/version
+        status: 200
+        note: >-
+          Anonymous 200. Response carries
+          "access-control-allow-headers: Accept, Content-Type, X-Dataverse-key, Range",
+          which is where the token header name is confirmed.
+      - url: https://dataverse.harvard.edu/api/admin/isOrcid
+        status: 403
+        note: Administrative operations are correctly refused to anonymous callers.
+  - surface: Harvard API Portal (HUIT)
+    baseURL: https://portal.apis.huit.harvard.edu
+    x-operator: institution
+    type: federated
+    note: >-
+      Access to the catalog, to any base URL and to credentials requires HarvardKey login,
+      application registration and a per-API access grant. HarvardKey authenticates against
+      Harvard's own Shibboleth IdP (see conformance/), so the developer identity here is the
+      same SAML identity as the rest of the institution. The portal is a Google Apigee
+      developer portal; the identity behind it is Harvard's.
+    evidence:
+      - url: https://portal.apis.huit.harvard.edu/apis
+        status: 200
+        note: >-
+          Returns a 2,138-byte Angular shell. Every catalog data path probed
+          (/api/apidocs, /portal/api/apidocs, /apis/list, /consumers/api/v1/apidocs)
+          returned either the same shell or 404, so the API inventory itself is not
+          readable without an account.
+  - surface: Legal Ed Skills Hub (Harvard Library Innovation Lab)
+    baseURL: https://harvard-lil.github.io/lawskills-hub
+    x-operator: institution
+    type: none
+    note: Static JSON served from GitHub Pages; designed for anonymous agent consumption.
+    evidence:
+      - url: https://harvard-lil.github.io/lawskills-hub/actions/personas.json
+        status: 200
+  - surface: Harvard University Shibboleth IdP (InCommon)
+    entityID: https://fed.huit.harvard.edu/idp/shibboleth
+    x-operator: institution
+    type: saml
+    note: >-
+      Not an API in the REST sense - it is the SAML 2.0 authentication authority the rest of
+      Harvard's gated surfaces delegate to. Registered in InCommon with REFEDS SIRTFI and the
+      Research and Scholarship entity category.
+    evidence:
+      - url: https://mdq.incommon.org/entities/https%3A%2F%2Ffed.huit.harvard.edu%2Fidp%2Fshibboleth
+        status: 200

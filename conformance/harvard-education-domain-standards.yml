@@ -1,0 +1,128 @@
+specification: API Evangelist Domain Standard Conformance
+specificationVersion: '0.1'
+provider: Harvard University
+providerId: harvard
+regime: education
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live probes of Harvard-operated hosts plus registry lookups against InCommon MDQ,
+  DataCite and Crossref, 2026-08-19. Contract-level hits were read from
+  openapi/_original/harvard-dataverse-openapi.yml as fetched from dataverse.harvard.edu/openapi.
+x-operator: institution
+description: >-
+  Conformance of Harvard University's institution-operated surfaces against the Kin Score
+  education regime standards list (scim, lti, oneroster, ed-fi, caliper, qti, oai-pmh,
+  shibboleth, saml, orcid, datacite, crossref). Reward-only: every entry below is backed by a
+  fetched artifact stored in examples/ or by a line location in openapi/_original/. Standards
+  with no evidence are recorded as not_found rather than assumed, and standards whose evidence
+  would belong to a vendor (Canvas LTI, Workday SCIM) are explicitly excluded because the
+  conformance would be the vendor's, not Harvard's.
+standards:
+  - standard: oai-pmh
+    status: conformant
+    version: '2.0'
+    x-operator: institution
+    x-operator-note: >-
+      Credited on the Dataverse endpoint, which Harvard runs on its own AWS infrastructure
+      with no vendor CNAME. The DASH endpoint below is listed as corroboration but is
+      tenant-operated and is not what earns this hit.
+    evidence:
+      - url: https://dash.harvard.edu/server/oai/request?verb=Identify
+        status: 200
+        location: examples/harvard-dash-oai-identify.xml
+        x-operator: tenant
+        note: >-
+          Valid OAI-PMH 2.0 Identify response. repositoryName "Harvard DASH",
+          repositoryIdentifier dash.harvard.edu, granularity YYYY-MM-DDThh:mm:ssZ.
+          RECORDED AS TENANT, NOT INSTITUTION: dash.harvard.edu is a CNAME to
+          dash.lib.harvard.edu -> harvard-dash.prod.4science.cloud, a 4Science-managed
+          DSpace installation. The hostname is Harvard's and the content is Harvard's;
+          the platform emitting this OAI-PMH response is 4Science's. Partial credit only.
+      - url: https://dataverse.harvard.edu/oai?verb=Identify
+        status: 200
+        location: examples/harvard-dataverse-oai-identify.xml
+        note: >-
+          Valid OAI-PMH 2.0 Identify response. repositoryName
+          "Harvard Dataverse Dataverse OAI Archive", adminEmail support@dataverse.harvard.edu.
+  - standard: shibboleth
+    status: conformant
+    x-operator: institution
+    evidence:
+      - url: https://mdq.incommon.org/entities/https%3A%2F%2Ffed.huit.harvard.edu%2Fidp%2Fshibboleth
+        status: 200
+        location: examples/harvard-incommon-idp-metadata.xml
+        note: >-
+          Harvard operates a Shibboleth Identity Provider registered in the InCommon
+          federation, entityID https://fed.huit.harvard.edu/idp/shibboleth. The entity carries
+          the REFEDS SIRTFI assurance certification and the REFEDS Research and Scholarship
+          entity category. Institution-operated by definition - a federation IdP cannot be
+          outsourced without changing the entityID.
+  - standard: saml
+    status: conformant
+    version: '2.0'
+    x-operator: institution
+    evidence:
+      - url: https://mdq.incommon.org/entities/https%3A%2F%2Ffed.huit.harvard.edu%2Fidp%2Fshibboleth
+        status: 200
+        location: examples/harvard-incommon-idp-metadata.xml
+        note: >-
+          Signed SAML 2.0 EntityDescriptor (urn:oasis:names:tc:SAML:2.0:metadata) with
+          IDPSSODescriptor, XML digital signature (rsa-sha256), OrganizationName
+          "Harvard College", mdui:DisplayName "Harvard University".
+  - standard: datacite
+    status: conformant
+    x-operator: institution
+    evidence:
+      - url: https://api.datacite.org/prefixes/10.7910
+        status: 200
+        location: examples/harvard-datacite-prefix-10.7910.json
+        note: >-
+          DOI prefix 10.7910 is registered to DataCite provider "harvardu"
+          (Harvard University) with repository client "gdcc.harvard-dv" (Harvard Dataverse).
+          This is the prefix minted for every dataset deposited in dataverse.harvard.edu.
+  - standard: crossref
+    status: registered
+    x-operator: institution
+    evidence:
+      - url: https://api.crossref.org/members/14695
+        status: 200
+        note: >-
+          Harvard Library is Crossref member 14695 (Cambridge, MA, United States) holding
+          DOI prefix 10.71303. Recorded as registered rather than conformant - the member
+          record reports a total of 1 deposited DOI, so the membership exists but the
+          deposit pipeline is not in production use. Honest partial credit, not a full hit.
+  - standard: orcid
+    status: contract-declared
+    x-operator: institution
+    evidence:
+      - url: https://dataverse.harvard.edu/openapi
+        status: 200
+        location: openapi/_original/harvard-dataverse-openapi.yml
+        note: >-
+          The contract Harvard Dataverse serves declares ORCID as a first-class identifier and
+          authentication provider - operation Admin_isOrcidEnabled at path /admin/isOrcid, and
+          schema properties authenticatedOrcid, orcid, orcidForDisplay, orcidProvider,
+          orcidEnabled, orcidAuthenticationProvider. Recorded as contract-declared rather than
+          conformant because /api/admin/isOrcid is correctly admin-gated (403 to an anonymous
+          probe), so the runtime enablement of the ORCID provider on this installation could
+          not be verified from outside.
+not_found:
+  - standard: scim
+    reason: >-
+      No institution-published SCIM endpoint or descriptor found. Harvard's HR/identity
+      provisioning runs through vendor platforms; any SCIM conformance there is the vendor's.
+  - standard: lti
+    reason: >-
+      Harvard's LMS is Canvas (Instructure). LTI conformance in that stack belongs to the
+      vendor's certification, not to an institution-published contract. Not credited here.
+  - standard: oneroster
+    reason: No IMS Global OneRoster surface found on any Harvard-operated host.
+  - standard: ed-fi
+    reason: Ed-Fi is a K-12 data standard; not applicable to and not found at this institution.
+  - standard: caliper
+    reason: >-
+      No Caliper Analytics event surface published. Any learning-analytics event stream would
+      sit inside the LMS vendor's platform.
+  - standard: qti
+    reason: No QTI assessment interchange surface published on a Harvard-operated host.

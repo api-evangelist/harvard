@@ -1,0 +1,295 @@
+openapi: 3.2.0
+info:
+  title: Legal Ed Skills Hub Actions API
+  description: Progressively discover and load pedagogical AI skills for legal education. Start with the personas list, drill into a persona for its skill inventory, then fetch individual skill instructions and reference materials as needed.
+  version: 1.0.0
+  contact:
+    name: Harvard Library Innovation Lab
+    url: https://lil.law.harvard.edu/
+servers:
+- url: https://harvard-lil.github.io/lawskills-hub
+tags:
+- name: Actions
+paths:
+  /actions/personas.json:
+    get:
+      operationId: listPersonas
+      summary: List all available personas
+      description: Returns a lightweight index of all personas in the Legal Ed Skills Hub. Each entry includes the persona id, display label, headline, and number of skills. Use a persona id to fetch its full detail.
+      responses:
+        '200':
+          description: Persona index
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonaIndex'
+      tags:
+      - Actions
+  /actions/personas/{persona_id}.json:
+    get:
+      operationId: getPersona
+      summary: Get full detail for one persona
+      description: Returns a persona's design principles, pedagogical objective, tone, and a list of available skills with descriptions. Use a skill name to fetch its full instructions.
+      parameters:
+      - name: persona_id
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - professor
+          - student
+          - pro-se
+          - cle
+          - skill-developer
+        description: Persona identifier
+      responses:
+        '200':
+          description: Persona detail with skill listing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonaDetail'
+      tags:
+      - Actions
+  /actions/skills/{persona_id}/{skill_name}.json:
+    get:
+      operationId: getSkill
+      summary: Get full skill instructions
+      description: Returns the complete skill instructions (the SKILL.md body) for one skill, plus metadata and a list of available reference documents. Follow the skill_body instructions to assist the user.
+      parameters:
+      - name: persona_id
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - professor
+          - student
+          - pro-se
+          - cle
+          - skill-developer
+        description: Persona identifier
+      - name: skill_name
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - client-email-coach
+          - development-plan
+          - exam-answer-eval
+          - feedback-coach
+          - issue-interview
+          - research-coach
+          - skill-creator
+          - skill-reviewer
+          - skill-tester
+          - socratic-tutor
+          - syllabus-evidence-based
+          - syllabus-traditional
+          - topic-curriculum
+          - understanding-check
+        description: Skill name (unique within a persona)
+      responses:
+        '200':
+          description: Full skill content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDetail'
+      tags:
+      - Actions
+  /actions/skills/{persona_id}/{skill_name}/references/{ref_name}.json:
+    get:
+      operationId: getReference
+      summary: Get a skill's reference document
+      description: Returns the content of a reference markdown document that accompanies a skill. Only fetch when the skill instructions direct you to.
+      parameters:
+      - name: persona_id
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - professor
+          - student
+          - pro-se
+          - cle
+          - skill-developer
+        description: Persona identifier
+      - name: skill_name
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - client-email-coach
+          - development-plan
+          - exam-answer-eval
+          - feedback-coach
+          - issue-interview
+          - research-coach
+          - skill-creator
+          - skill-reviewer
+          - skill-tester
+          - socratic-tutor
+          - syllabus-evidence-based
+          - syllabus-traditional
+          - topic-curriculum
+          - understanding-check
+        description: Skill name (unique within a persona)
+      - name: ref_name
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - rubric-schema
+          - syllabus-research-protocol
+        description: Reference document name (without .md extension)
+      responses:
+        '200':
+          description: Reference document content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceDetail'
+      tags:
+      - Actions
+components:
+  schemas:
+    ReferenceDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        skill:
+          type: string
+        persona:
+          type: string
+        content:
+          type: string
+          description: Full markdown content of the reference document
+    PersonaDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        headline:
+          type: string
+        pitch:
+          type: string
+        design:
+          type: object
+          description: 'Pedagogical design: objective, principles, tone, success criteria'
+          properties:
+            objective:
+              type: string
+            principles:
+              type: array
+              items:
+                type: string
+            tone:
+              type: string
+            success:
+              type: string
+        skills:
+          type: array
+          description: Available skills — fetch one by name to get full instructions
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+                enum:
+                - preview
+                - official
+                description: Release status of the skill
+              has_references:
+                type: boolean
+              reference_count:
+                type: integer
+        usage_hint:
+          type: string
+    SkillDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+          enum:
+          - preview
+          - official
+          description: Release status of the skill
+        persona:
+          type: string
+        skill_body:
+          type: string
+          description: Complete skill instructions in markdown. Follow these to assist the user.
+        references:
+          type: array
+          description: Reference documents available for this skill
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              fetch_path:
+                type: string
+                description: Path to fetch reference content
+        usage_hint:
+          type: string
+    PersonaIndex:
+      type: object
+      properties:
+        description:
+          type: string
+        personas:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Persona identifier
+              label:
+                type: string
+                description: Display name
+              description:
+                type: string
+                description: 'When this persona applies: describes the type of user and tasks this persona handles. Use this to match against the user''s question.'
+              objective:
+                type: string
+                description: The persona's core pedagogical objective and constraint
+              skill_count:
+                type: integer
+                description: Number of available skills
+x-operator: institution
+x-server-verified:
+  generated: '2026-08-19'
+  method: probed
+  note: 'NOT a broken or placeholder base. audit-university-contracts.py flags harvard-lil.github.io as a code host, but the university contract is explicit that a code host says nothing about authorship - judge the artifact by what it says about itself. This document self-declares servers[0].url = https://harvard-lil.github.io/lawskills-hub, and that base was probed live: GET /actions/personas.json returned 200 with a valid persona index and GET /actions/personas/professor.json returned 200. The server is real, callable and the institution unit''s own. Do NOT "repair" this base.'
+  evidence:
+  - url: https://harvard-lil.github.io/lawskills-hub/actions/personas.json
+    status: 200
+  - url: https://harvard-lil.github.io/lawskills-hub/actions/personas/professor.json
+    status: 200
+x-provenance:
+  generated: '2026-08-19'
+  method: searched
+  source: https://harvard-lil.github.io/lawskills-hub/actions/openapi.yaml
+  note: Published by the Harvard Law School Library Innovation Lab (github.com/harvard-lil). Code host is GitHub Pages; servers[] self-declares harvard-lil.github.io/lawskills-hub, so the surface is the institution unit's own. info.contact added on fetch.

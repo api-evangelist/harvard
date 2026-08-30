@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="static/style.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-19T21:08:53Z</responseDate><request verb="Identify">https://dash.harvard.edu/server/oai/request</request><Identify><repositoryName>Harvard DASH</repositoryName><baseURL>https://dash.harvard.edu/server/oai/request</baseURL><protocolVersion>2.0</protocolVersion><adminEmail>dash-webadmin@HU.onmicrosoft.com</adminEmail><earliestDatestamp>1900-01-01T00:00:00Z</earliestDatestamp><deletedRecord>transient</deletedRecord><granularity>YYYY-MM-DDThh:mm:ssZ</granularity><description><oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
+<scheme>oai</scheme>
+<repositoryIdentifier>dash.harvard.edu</repositoryIdentifier>
+<delimiter>:</delimiter>
+<sampleIdentifier>oai:dash.harvard.edu:1/1234</sampleIdentifier>
+</oai-identifier>
+</description></Identify></OAI-PMH>

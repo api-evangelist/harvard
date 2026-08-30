@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Users API
+  description: Live OpenAPI served by Harvard Dataverse at https://dataverse.harvard.edu/openapi. Dataverse is open-source research data repository software authored by Harvard's own Institute for Quantitative Social Science (github.com/IQSS/dataverse); this document is the software's generic contract as emitted by the Harvard installation (build iqss-4). The deployment, the data, the DOI prefix (10.7910, DataCite provider harvardu) and the operations are Harvard's; the contract text is shared with every other Dataverse installation.
+  version: 6.10.1
+  contact:
+    name: Harvard Dataverse Support
+    email: support@dataverse.harvard.edu
+    url: https://dataverse.harvard.edu
+servers:
+- url: https://dataverse.harvard.edu
+  description: Harvard Dataverse production
+tags:
+- name: Users
+paths:
+  /users/:me:
+    get:
+      operationId: Users_getAuthenticatedUserByToken
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/register:
+    post:
+      operationId: Users_registerOIDCUser
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/token:
+    get:
+      operationId: Users_getTokenExpirationDate
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+    delete:
+      operationId: Users_deleteToken
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/token/recreate:
+    post:
+      operationId: Users_recreateToken
+      parameters:
+      - name: returnExpiration
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/{consumedIdentifier}/mergeIntoUser/{baseIdentifier}:
+    post:
+      operationId: Users_mergeInAuthenticatedUser
+      parameters:
+      - name: baseIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumedIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/{identifier}/allowedCollections/{permission}:
+    get:
+      operationId: Users_getUserPermittedCollections
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/{identifier}/changeIdentifier/{newIdentifier}:
+    post:
+      operationId: Users_changeAuthenticatedUserIdentifier
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: newIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/{identifier}/removeRoles:
+    post:
+      operationId: Users_removeUserRoles
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/{identifier}/traces:
+    get:
+      operationId: Users_getTraces
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+  /users/{identifier}/traces/{element}:
+    get:
+      operationId: Users_getTracesElement
+      parameters:
+      - name: element
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+x-operator: institution
+x-provenance:
+  generated: '2026-08-19'
+  method: searched
+  source: https://dataverse.harvard.edu/openapi
+  note: Fetched verbatim; pristine copy in openapi/_original/. servers[], info.contact and the info.description operator note were added on fetch because the emitted document carries no servers[] block. No paths, parameters or schemas were altered.

@@ -1,0 +1,258 @@
+{
+  "dspaceUI" : "https://dash.harvard.edu",
+  "dspaceName" : "Harvard DASH",
+  "dspaceServer" : "https://dash.harvard.edu/server",
+  "dspaceVersion" : "DSpace 8.0",
+  "type" : "root",
+  "_links" : {
+    "actuator" : {
+      "href" : "https://dash.harvard.edu/server/actuator"
+    },
+    "authn" : {
+      "href" : "https://dash.harvard.edu/server/api/authn"
+    },
+    "authorizations" : {
+      "href" : "https://dash.harvard.edu/server/api/authz/authorizations"
+    },
+    "bitstreamformats" : {
+      "href" : "https://dash.harvard.edu/server/api/core/bitstreamformats"
+    },
+    "bitstreams" : {
+      "href" : "https://dash.harvard.edu/server/api/core/bitstreams"
+    },
+    "browses" : {
+      "href" : "https://dash.harvard.edu/server/api/discover/browses"
+    },
+    "bulkaccessconditionoptions" : {
+      "href" : "https://dash.harvard.edu/server/api/config/bulkaccessconditionoptions"
+    },
+    "bundles" : {
+      "href" : "https://dash.harvard.edu/server/api/core/bundles"
+    },
+    "categories" : {
+      "href" : "https://dash.harvard.edu/server/api/statistics/categories"
+    },
+    "claimedtasks" : {
+      "href" : "https://dash.harvard.edu/server/api/workflow/claimedtasks"
+    },
+    "claimedtasks-search" : {
+      "href" : "https://dash.harvard.edu/server/api/workflow/claimedtasks/search"
+    },
+    "collections" : {
+      "href" : "https://dash.harvard.edu/server/api/core/collections"
+    },
+    "communities" : {
+      "href" : "https://dash.harvard.edu/server/api/core/communities"
+    },
+    "contentreport" : {
+      "href" : "https://dash.harvard.edu/server/api/contentreport"
+    },
+    "correctiontypes" : {
+      "href" : "https://dash.harvard.edu/server/api/config/correctiontypes"
+    },
+    "discover" : {
+      "href" : "https://dash.harvard.edu/server/api/discover"
+    },
+    "dso" : {
+      "href" : "https://dash.harvard.edu/server/api/dso/find{?uuid}",
+      "templated" : true
+    },
+    "enqueueretry" : {
+      "href" : "https://dash.harvard.edu/server/api/ldn/messages/{id}/enqueueretry",
+      "templated" : true
+    },
+    "entitytypes" : {
+      "href" : "https://dash.harvard.edu/server/api/core/entitytypes"
+    },
+    "eperson-registration" : {
+      "href" : "https://dash.harvard.edu/server/api/eperson/registrations"
+    },
+    "epersons" : {
+      "href" : "https://dash.harvard.edu/server/api/eperson/epersons"
+    },
+    "externalsources" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/externalsources"
+    },
+    "features" : {
+      "href" : "https://dash.harvard.edu/server/api/authz/features"
+    },
+    "feedbacks" : {
+      "href" : "https://dash.harvard.edu/server/api/tools/feedbacks"
+    },
+    "groups" : {
+      "href" : "https://dash.harvard.edu/server/api/eperson/groups"
+    },
+    "identifiers" : {
+      "href" : "https://dash.harvard.edu/server/api/pid/identifiers"
+    },
+    "itemfilters" : {
+      "href" : "https://dash.harvard.edu/server/api/config/itemfilters"
+    },
+    "itemrequests" : {
+      "href" : "https://dash.harvard.edu/server/api/tools/itemrequests"
+    },
+    "items" : {
+      "href" : "https://dash.harvard.edu/server/api/core/items"
+    },
+    "itemtemplates" : {
+      "href" : "https://dash.harvard.edu/server/api/core/itemtemplates"
+    },
+    "ldnservices" : {
+      "href" : "https://dash.harvard.edu/server/api/ldn/ldnservices"
+    },
+    "messages" : {
+      "href" : "https://dash.harvard.edu/server/api/ldn/messages"
+    },
+    "metadatafields" : {
+      "href" : "https://dash.harvard.edu/server/api/core/metadatafields"
+    },
+    "metadataschemas" : {
+      "href" : "https://dash.harvard.edu/server/api/core/metadataschemas"
+    },
+    "notifyrequests" : {
+      "href" : "https://dash.harvard.edu/server/api/ldn/notifyrequests"
+    },
+    "oidc" : {
+      "href" : "https://dash.harvard.edu/server/api/authn"
+    },
+    "pid" : {
+      "href" : "https://dash.harvard.edu/server/api/pid/find{?id}",
+      "templated" : true
+    },
+    "pooltasks" : {
+      "href" : "https://dash.harvard.edu/server/api/workflow/pooltasks"
+    },
+    "pooltasks-search" : {
+      "href" : "https://dash.harvard.edu/server/api/workflow/pooltasks/search"
+    },
+    "processes" : {
+      "href" : "https://dash.harvard.edu/server/api/system/processes"
+    },
+    "profiles" : {
+      "href" : "https://dash.harvard.edu/server/api/eperson/profiles"
+    },
+    "properties" : {
+      "href" : "https://dash.harvard.edu/server/api/config/properties"
+    },
+    "qualityassuranceevents" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/qualityassuranceevents"
+    },
+    "qualityassurancesources" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/qualityassurancesources"
+    },
+    "qualityassurancetopics" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/qualityassurancetopics"
+    },
+    "registrations" : {
+      "href" : "https://dash.harvard.edu/server/api/eperson/registrations"
+    },
+    "relationships" : {
+      "href" : "https://dash.harvard.edu/server/api/core/relationships"
+    },
+    "relationshiptypes" : {
+      "href" : "https://dash.harvard.edu/server/api/core/relationshiptypes"
+    },
+    "resourcepolicies" : {
+      "href" : "https://dash.harvard.edu/server/api/authz/resourcepolicies"
+    },
+    "resourcepolicies-search" : {
+      "href" : "https://dash.harvard.edu/server/api/authz/resourcepolicies/search"
+    },
+    "scripts" : {
+      "href" : "https://dash.harvard.edu/server/api/system/scripts"
+    },
+    "self" : {
+      "href" : "https://dash.harvard.edu/server/api"
+    },
+    "sites" : {
+      "href" : "https://dash.harvard.edu/server/api/core/sites"
+    },
+    "statistics" : {
+      "href" : "https://dash.harvard.edu/server/api/statistics"
+    },
+    "stories" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/stories"
+    },
+    "submissionaccessoptions" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissionaccessoptions"
+    },
+    "submissioncclicenseUrls" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissioncclicenseUrls"
+    },
+    "submissioncclicenseUrls-search" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissioncclicenseUrls/search"
+    },
+    "submissioncclicenses" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissioncclicenses"
+    },
+    "submissioncoarnotifyconfigs" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissioncoarnotifyconfigs"
+    },
+    "submissiondefinitions" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissiondefinitions"
+    },
+    "submissionforms" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissionforms"
+    },
+    "submissionsections" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissionsections"
+    },
+    "submissionuploads" : {
+      "href" : "https://dash.harvard.edu/server/api/config/submissionuploads"
+    },
+    "subscriptions" : {
+      "href" : "https://dash.harvard.edu/server/api/core/subscriptions"
+    },
+    "subscriptions-search" : {
+      "href" : "https://dash.harvard.edu/server/api/core/subscriptions/search"
+    },
+    "suggestions" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/suggestions"
+    },
+    "suggestionsources" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/suggestionsources"
+    },
+    "suggestiontargets" : {
+      "href" : "https://dash.harvard.edu/server/api/integration/suggestiontargets"
+    },
+    "supervisionorders" : {
+      "href" : "https://dash.harvard.edu/server/api/core/supervisionorders"
+    },
+    "systemwidealerts" : {
+      "href" : "https://dash.harvard.edu/server/api/system/systemwidealerts"
+    },
+    "usagereports" : {
+      "href" : "https://dash.harvard.edu/server/api/statistics/usagereports"
+    },
+    "versionhistories" : {
+      "href" : "https://dash.harvard.edu/server/api/versioning/versionhistories"
+    },
+    "versions" : {
+      "href" : "https://dash.harvard.edu/server/api/versioning/versions"
+    },
+    "vocabularies" : {
+      "href" : "https://dash.harvard.edu/server/api/submission/vocabularies"
+    },
+    "vocabularyEntryDetails" : {
+      "href" : "https://dash.harvard.edu/server/api/submission/vocabularyEntryDetails"
+    },
+    "vocabularyEntryDetails-search" : {
+      "href" : "https://dash.harvard.edu/server/api/submission/vocabularyEntryDetails/search"
+    },
+    "workflowactions" : {
+      "href" : "https://dash.harvard.edu/server/api/config/workflowactions"
+    },
+    "workflowdefinitions" : {
+      "href" : "https://dash.harvard.edu/server/api/config/workflowdefinitions"
+    },
+    "workflowitems" : {
+      "href" : "https://dash.harvard.edu/server/api/workflow/workflowitems"
+    },
+    "workflowsteps" : {
+      "href" : "https://dash.harvard.edu/server/api/config/workflowsteps"
+    },
+    "workspaceitems" : {
+      "href" : "https://dash.harvard.edu/server/api/submission/workspaceitems"
+    }
+  }
+}
