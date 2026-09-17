@@ -120,10 +120,11 @@ apis:
 - aid: harvard:dataverse-oai
   name: Harvard Dataverse OAI-PMH
   x-operator: institution
-  description: OAI-PMH 2.0 metadata harvesting endpoint for Harvard Dataverse. Identify returns repositoryName
-    "Harvard Dataverse Dataverse OAI Archive" with adminEmail support@dataverse.harvard.edu, earliest
-    datestamp 2017-09-25, gzip and deflate compression. Open, no key. This is the endpoint that earns
-    Harvard's oai-pmh domain standard hit under the Kin Score education regime.
+  description: >-
+    OAI-PMH 2.0 metadata harvesting endpoint for Harvard Dataverse. Identify returns repositoryName "Harvard
+    Dataverse Dataverse OAI Archive" with adminEmail support@dataverse.harvard.edu, earliest datestamp
+    2017-09-25, gzip and deflate compression. Open, no key. This is the endpoint that earns Harvard's
+    oai-pmh domain standard hit under the Kin Score education regime.
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/oai
   tags:
@@ -139,12 +140,13 @@ apis:
 - aid: harvard:librarycloud
   name: Harvard Library LibraryCloud API (Open Metadata)
   x-operator: institution
-  description: 'Open metadata hub aggregating Harvard bibliographic metadata (12.7M+ bib records, image
-    records, ArchivesSpace finding aids) and returning normalized MODS or Dublin Core. The public Item
-    API needs no key and is served from Harvard''s own infrastructure (api.lib.harvard.edu -> api-prod.hz.lib.harvard.edu
-    on AWS). Harvard publishes no machine-readable contract for it; a schema derived from a live response
-    is stored under json-schema/. Note the defect recorded in errors/: a non-numeric limit parameter returns
-    a Tomcat HTML 500 rather than a 400.'
+  description: >-
+    Open metadata hub aggregating Harvard bibliographic metadata (12.7M+ bib records, image records, ArchivesSpace
+    finding aids) and returning normalized MODS or Dublin Core. The public Item API needs no key and is
+    served from Harvard's own infrastructure (api.lib.harvard.edu -> api-prod.hz.lib.harvard.edu on AWS).
+    Harvard publishes no machine-readable contract for it; a schema derived from a live response is stored
+    under json-schema/. Note the defect recorded in errors/: a non-numeric limit parameter returns a Tomcat
+    HTML 500 rather than a 400.
   humanURL: https://library.harvard.edu/services-tools/harvard-library-apis-datasets
   baseURL: https://api.lib.harvard.edu/v2/items.json
   tags:
@@ -165,13 +167,13 @@ apis:
 - aid: harvard:art-museums
   name: Harvard Art Museums API
   x-operator: institution
-  description: REST/JSON API to the Harvard Art Museums' collections across 25 documented resources (object,
-    person, exhibition, publication, gallery, classification, culture, medium, period, place, image, iiif,
-    spectrum and more), with pagination, aggregations and IIIF image services. Free key, non-commercial
-    use. Built and run by the museums themselves - the host is their own application on Heroku, not a
-    collections-platform vendor, and the code and docs live in the harvardartmuseums GitHub org. Documentation
-    is 25 markdown files; there is no machine-readable contract, and the API root 301-redirects to the
-    docs repo.
+  description: >-
+    REST/JSON API to the Harvard Art Museums' collections across 25 documented resources (object, person,
+    exhibition, publication, gallery, classification, culture, medium, period, place, image, iiif, spectrum
+    and more), with pagination, aggregations and IIIF image services. Free key, non-commercial use. Built
+    and run by the museums themselves - the host is their own application on Heroku, not a collections-platform
+    vendor, and the code and docs live in the harvardartmuseums GitHub org. Documentation is 25 markdown
+    files; there is no machine-readable contract, and the API root 301-redirects to the docs repo.
   humanURL: https://github.com/harvardartmuseums/api-docs
   baseURL: https://api.harvardartmuseums.org
   tags:
@@ -196,14 +198,15 @@ apis:
 - aid: harvard:identity-federation
   name: Harvard University Shibboleth Identity Provider (InCommon)
   x-operator: institution
-  description: Harvard's SAML 2.0 identity provider, entityID https://fed.huit.harvard.edu/idp/shibboleth,
-    registered in the InCommon federation and reachable as signed machine-readable metadata through the
-    InCommon metadata query service. The entity carries REFEDS SIRTFI assurance certification and the
-    REFEDS Research and Scholarship entity category; OrganizationName is "Harvard College" and mdui:DisplayName
-    is "Harvard University". This is the authentication authority behind HarvardKey and therefore behind
-    every gated Harvard API, and it is institution-operated by definition - a federation IdP cannot be
-    outsourced without changing the entityID. Almost never catalogued for any institution; it is the most
-    unambiguously Harvard-owned machine-readable artifact in this profile.
+  description: >-
+    Harvard's SAML 2.0 identity provider, entityID https://fed.huit.harvard.edu/idp/shibboleth, registered
+    in the InCommon federation and reachable as signed machine-readable metadata through the InCommon
+    metadata query service. The entity carries REFEDS SIRTFI assurance certification and the REFEDS Research
+    and Scholarship entity category; OrganizationName is "Harvard College" and mdui:DisplayName is "Harvard
+    University". This is the authentication authority behind HarvardKey and therefore behind every gated
+    Harvard API, and it is institution-operated by definition - a federation IdP cannot be outsourced
+    without changing the entityID. Almost never catalogued for any institution; it is the most unambiguously
+    Harvard-owned machine-readable artifact in this profile.
   humanURL: https://incommon.org/federation/
   baseURL: https://mdq.incommon.org/entities/https%3A%2F%2Ffed.huit.harvard.edu%2Fidp%2Fshibboleth
   tags:
@@ -220,8 +223,9 @@ apis:
 - aid: harvard:caselaw-access-project
   name: Caselaw Access Project bulk data (Harvard Library Innovation Lab)
   x-operator: institution
-  description: Harvard Law School Library Innovation Lab's digitization of US case law, served as static
-    bulk data organized by reporter. The live REST API at api.case.law was retired in 2024 and now 301-redirects
+  description: >-
+    Harvard Law School Library Innovation Lab's digitization of US case law, served as static bulk data
+    organized by reporter. The live REST API at api.case.law was retired in 2024 and now 301-redirects
     to the project documentation; API operations were transferred to the Free Law Project's CourtListener
     while Harvard continues to serve the bulk data itself. Recorded partly because it is a genuine, executed,
     publicly documented API sunset - a rare thing anywhere and unique in this cohort.
@@ -243,12 +247,13 @@ apis:
 - aid: harvard:perma
   name: Perma.cc API (Harvard Library Innovation Lab)
   x-operator: institution
-  description: 'Perma.cc is the Harvard Law School Library Innovation Lab''s link-rot service, creating
-    permanent citable archives of web pages, and it exposes a public REST API at api.perma.cc. Ownership
-    is confirmed - the codebase is github.com/harvard-lil/perma and the repo declares perma.cc as its
-    homepage. HONEST LIMIT: every probe of api.perma.cc and perma.cc from this run hit a Cloudflare interstitial
-    (403), so the surface is recorded as live-but-unreadable to us. No response shape, no auth scheme
-    and no error contract was verified, and none is claimed here.'
+  description: >-
+    Perma.cc is the Harvard Law School Library Innovation Lab's link-rot service, creating permanent citable
+    archives of web pages, and it exposes a public REST API at api.perma.cc. Ownership is confirmed -
+    the codebase is github.com/harvard-lil/perma and the repo declares perma.cc as its homepage. HONEST
+    LIMIT: every probe of api.perma.cc and perma.cc from this run hit a Cloudflare interstitial (403),
+    so the surface is recorded as live-but-unreadable to us. No response shape, no auth scheme and no
+    error contract was verified, and none is claimed here.
   humanURL: https://perma.cc/
   baseURL: https://api.perma.cc/v1
   tags:
@@ -262,14 +267,14 @@ apis:
 - aid: harvard:api-portal
   name: Harvard API Portal (HUIT)
   x-operator: institution
-  description: 'Harvard University Information Technology''s central catalog of administrative APIs -
-    Courses, Person Data Service, Library Catalog, Dining, HR Departments, Zoom, Emailer and Generative
-    AI. The portal software is a Google Apigee developer portal, but the APIs it fronts are Harvard-built
-    and run on Harvard''s gateway, so the surface is institution, not tenant. It is however completely
-    closed to an outside developer: the catalog itself, every base URL and every credential require HarvardKey
-    login, application registration and a per-API access grant. Anonymous requests to the portal and to
-    every catalog data path return a 2KB Angular shell, so not one administrative API contract could be
-    read.'
+  description: >-
+    Harvard University Information Technology's central catalog of administrative APIs - Courses, Person
+    Data Service, Library Catalog, Dining, HR Departments, Zoom, Emailer and Generative AI. The portal
+    software is a Google Apigee developer portal, but the APIs it fronts are Harvard-built and run on
+    Harvard's gateway, so the surface is institution, not tenant. It is however completely closed to an
+    outside developer: the catalog itself, every base URL and every credential require HarvardKey login,
+    application registration and a per-API access grant. Anonymous requests to the portal and to every
+    catalog data path return a 2KB Angular shell, so not one administrative API contract could be read.
   humanURL: https://portal.apis.huit.harvard.edu/apis
   tags:
   - Courses
@@ -288,14 +293,15 @@ apis:
   name: Harvard DASH institutional repository (4Science-managed DSpace)
   x-operator: tenant
   x-tenant-of: 4Science
-  description: 'DASH (Digital Access to Scholarship at Harvard) is Harvard''s open-access institutional
-    repository of 58,000+ scholarly works, exposing an open OAI-PMH 2.0 endpoint and a DSpace 7 HAL REST
-    API. TENANT, NOT INSTITUTION, and the DNS is what settles it: dash.harvard.edu is a CNAME to dash.lib.harvard.edu,
+  description: >-
+    DASH (Digital Access to Scholarship at Harvard) is Harvard's open-access institutional repository
+    of 58,000+ scholarly works, exposing an open OAI-PMH 2.0 endpoint and a DSpace 7 HAL REST API. TENANT,
+    NOT INSTITUTION, and the DNS is what settles it: dash.harvard.edu is a CNAME to dash.lib.harvard.edu,
     which is a CNAME to harvard-dash.prod.4science.cloud, a 4Science-managed DSpace installation. This
-    is the scholarbank.nus.edu.sg pattern - a hostname on the institution''s own domain that resolves
-    onto a vendor platform. The content, the collections and the Harvard DASH repository identifier are
-    genuinely Harvard''s; the REST contract is DSpace''s and the operations are 4Science''s. The relationship
-    is recorded as a real institutional fact; no DSpace contract is saved under Harvard''s slug.'
+    is the scholarbank.nus.edu.sg pattern - a hostname on the institution's own domain that resolves onto
+    a vendor platform. The content, the collections and the Harvard DASH repository identifier are genuinely
+    Harvard's; the REST contract is DSpace's and the operations are 4Science's. The relationship is recorded
+    as a real institutional fact; no DSpace contract is saved under Harvard's slug.
   humanURL: https://library.harvard.edu/services-tools/dash
   baseURL: https://dash.harvard.edu/server/oai/request
   tags:
@@ -313,7 +319,8 @@ apis:
   name: HOLLIS library discovery (Ex Libris Primo VE tenancy)
   x-operator: tenant
   x-tenant-of: Ex Libris (Clarivate)
-  description: HOLLIS is Harvard Library's discovery layer. hollis.harvard.edu CNAMEs to hvd.primo.exlibrisgroup.com
+  description: >-
+    HOLLIS is Harvard Library's discovery layer. hollis.harvard.edu CNAMEs to hvd.primo.exlibrisgroup.com
     and redirects to /discovery/search?vid=01HVD_INST:HVD2, a standard Ex Libris Primo VE tenant instance.
     Harvard's collections, Ex Libris's contract. Recorded as the relationship it is; the Primo/Alma APIs
     belong in Ex Libris's own repo.
@@ -331,12 +338,12 @@ apis:
   name: Harvard Figshare tenancy
   x-operator: tenant
   x-tenant-of: Figshare (Digital Science)
-  description: 'harvard.figshare.com is a Figshare institutional tenancy - the host CNAMEs directly to
-    figshare.com. This is precisely the surface that produced the misattribution this pipeline exists
-    to prevent: in the June 2026 cohort a single api.figshare.com contract was saved into 25 institutions''
-    repos and gave eight of them an identical agent-readiness of 38.9. Harvard''s tenancy is recorded
-    here as a relationship and nothing more. No Figshare contract is stored under this slug, and none
-    should ever be re-added.'
+  description: >-
+    harvard.figshare.com is a Figshare institutional tenancy - the host CNAMEs directly to figshare.com.
+    This is precisely the surface that produced the misattribution this pipeline exists to prevent: in
+    the June 2026 cohort a single api.figshare.com contract was saved into 25 institutions' repos and
+    gave eight of them an identical agent-readiness of 38.9. Harvard's tenancy is recorded here as a relationship
+    and nothing more. No Figshare contract is stored under this slug, and none should ever be re-added.
   humanURL: https://harvard.figshare.com/
   tags:
   - Research Repository
@@ -349,11 +356,11 @@ apis:
   name: Canvas LMS tenancy (Instructure)
   x-operator: tenant
   x-tenant-of: Instructure
-  description: canvas.harvard.edu CNAMEs to harvard-vanity.instructure.com. The Canvas REST API is live
-    on that hostname and returns a well-formed JSON 401 to an anonymous caller, which makes it the best-behaved
-    error contract answering on a harvard.edu name - and it is entirely Instructure's. Any LTI or Caliper
-    conformance in this stack is the vendor's certification, which is why neither is credited to Harvard
-    in conformance/.
+  description: >-
+    canvas.harvard.edu CNAMEs to harvard-vanity.instructure.com. The Canvas REST API is live on that hostname
+    and returns a well-formed JSON 401 to an anonymous caller, which makes it the best-behaved error contract
+    answering on a harvard.edu name - and it is entirely Instructure's. Any LTI or Caliper conformance
+    in this stack is the vendor's certification, which is why neither is credited to Harvard in conformance/.
   humanURL: https://canvas.harvard.edu/
   baseURL: https://canvas.harvard.edu/api/v1
   tags:
@@ -369,9 +376,10 @@ apis:
   name: Zoom tenancy
   x-operator: tenant
   x-tenant-of: Zoom
-  description: harvard.zoom.us is a Zoom institutional tenancy branded "Zoom for Harvard", and a Zoom
-    API appears in the HUIT API Portal catalog. The account is Harvard's; the API is Zoom's. Recorded
-    so the HUIT catalog listing is not later mistaken for a Harvard-built API.
+  description: >-
+    harvard.zoom.us is a Zoom institutional tenancy branded "Zoom for Harvard", and a Zoom API appears
+    in the HUIT API Portal catalog. The account is Harvard's; the API is Zoom's. Recorded so the HUIT
+    catalog listing is not later mistaken for a Harvard-built API.
   humanURL: https://harvard.zoom.us/
   tags:
   - Conferencing
@@ -624,7 +632,8 @@ apis:
     url: examples/harvard-lil-lawskills-personas.json
 - aid: harvard:harvard-dataversefeatureditems-api
   name: Harvard University Dataverse Featured Items API
-  description: The DataverseFeaturedItems API from Harvard University — 1 operation(s) for dataversefeatureditems.
+  description: >-
+    The DataverseFeaturedItems API from Harvard University — 1 operation(s) for dataversefeatureditems.
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/api
   tags:
@@ -676,28 +685,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/harvard-edit-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/native-api.html
-  - type: GitHub
-    url: https://github.com/IQSS/dataverse
-  - type: Examples
-    url: examples/harvard-dataverse-search-response.json
-  - type: GitHub
-    url: https://github.com/harvard-lil/lawskills-hub
-  - type: JSONSchema
-    url: json-schema/harvard-lil-lawskills-persona-index.schema.json
-  - type: Examples
-    url: examples/harvard-lil-lawskills-personas.json
-- aid: harvard:harvard-externaltools-api
-  name: Harvard University External Tools API
-  description: The ExternalTools API from Harvard University — 2 operation(s) for externaltools.
-  humanURL: https://dataverse.harvard.edu/
-  baseURL: https://dataverse.harvard.edu/api
-  tags:
-  - ExternalTools
-  properties:
-  - type: OpenAPI
-    url: openapi/harvard-externaltools-api-openapi.yml
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/api/native-api.html
   - type: GitHub
@@ -1133,28 +1120,6 @@ apis:
     url: json-schema/harvard-lil-lawskills-persona-index.schema.json
   - type: Examples
     url: examples/harvard-lil-lawskills-personas.json
-- aid: harvard:harvard-sendfeedback-api
-  name: Harvard University Sendfeedback API
-  description: The Sendfeedback API from Harvard University — 1 operation(s) for sendfeedback.
-  humanURL: https://dataverse.harvard.edu/
-  baseURL: https://dataverse.harvard.edu/api
-  tags:
-  - Sendfeedback
-  properties:
-  - type: OpenAPI
-    url: openapi/harvard-sendfeedback-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/native-api.html
-  - type: GitHub
-    url: https://github.com/IQSS/dataverse
-  - type: Examples
-    url: examples/harvard-dataverse-search-response.json
-  - type: GitHub
-    url: https://github.com/harvard-lil/lawskills-hub
-  - type: JSONSchema
-    url: json-schema/harvard-lil-lawskills-persona-index.schema.json
-  - type: Examples
-    url: examples/harvard-lil-lawskills-personas.json
 - aid: harvard:harvard-uploaddatasetlogo-api
   name: Harvard University Upload Dataset Logo API
   description: Uploads a logo for a dataset
@@ -1212,6 +1177,50 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/harvard-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: GitHub
+    url: https://github.com/IQSS/dataverse
+  - type: Examples
+    url: examples/harvard-dataverse-search-response.json
+  - type: GitHub
+    url: https://github.com/harvard-lil/lawskills-hub
+  - type: JSONSchema
+    url: json-schema/harvard-lil-lawskills-persona-index.schema.json
+  - type: Examples
+    url: examples/harvard-lil-lawskills-personas.json
+- aid: harvard:harvard-external-tools-api
+  name: Harvard University External Tools API
+  description: The External Tools API from Harvard University — 2 operation(s) for external tools.
+  humanURL: https://dataverse.harvard.edu/
+  baseURL: https://dataverse.harvard.edu/oai
+  tags:
+  - External Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/harvard-external-tools-api-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/native-api.html
+  - type: GitHub
+    url: https://github.com/IQSS/dataverse
+  - type: Examples
+    url: examples/harvard-dataverse-search-response.json
+  - type: GitHub
+    url: https://github.com/harvard-lil/lawskills-hub
+  - type: JSONSchema
+    url: json-schema/harvard-lil-lawskills-persona-index.schema.json
+  - type: Examples
+    url: examples/harvard-lil-lawskills-personas.json
+- aid: harvard:harvard-send-feedback-api
+  name: Harvard University Send Feedback API
+  description: The Send Feedback API from Harvard University — 1 operation(s) for send feedback.
+  humanURL: https://dataverse.harvard.edu/
+  baseURL: https://dataverse.harvard.edu/oai
+  tags:
+  - Send Feedback
+  properties:
+  - type: OpenAPI
+    url: openapi/harvard-send-feedback-api-openapi.yml
   - type: Documentation
     url: https://guides.dataverse.org/en/latest/api/native-api.html
   - type: GitHub
