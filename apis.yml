@@ -214,6 +214,12 @@ apis:
   - Shibboleth
   - SAML
   - InCommon
+  - SSO
+  tags_raw:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - InCommon
   - Single Sign-On
   properties:
   - type: Examples
@@ -257,6 +263,11 @@ apis:
   humanURL: https://perma.cc/
   baseURL: https://api.perma.cc/v1
   tags:
+  - Web Archiving
+  - Legal
+  - Citations
+  - Library
+  tags_raw:
   - Web Archiving
   - Legal
   - Citation
@@ -309,6 +320,12 @@ apis:
   - Open Access
   - OAI-PMH
   - DSpace
+  - Tenants
+  tags_raw:
+  - Research Repository
+  - Open Access
+  - OAI-PMH
+  - DSpace
   - Tenant
   properties:
   - type: Documentation
@@ -326,6 +343,12 @@ apis:
     belong in Ex Libris's own repo.
   humanURL: https://hollis.harvard.edu/
   tags:
+  - Library
+  - Discovery
+  - Primo
+  - Ex Libris
+  - Tenants
+  tags_raw:
   - Library
   - Discovery
   - Primo
@@ -348,6 +371,10 @@ apis:
   tags:
   - Research Repository
   - Figshare
+  - Tenants
+  tags_raw:
+  - Research Repository
+  - Figshare
   - Tenant
   properties:
   - type: Website
@@ -368,6 +395,12 @@ apis:
   - Canvas
   - Instructure
   - Teaching and Learning
+  - Tenants
+  tags_raw:
+  - LMS
+  - Canvas
+  - Instructure
+  - Teaching and Learning
   - Tenant
   properties:
   - type: Website
@@ -382,6 +415,10 @@ apis:
     catalog listing is not later mistaken for a Harvard-built API.
   humanURL: https://harvard.zoom.us/
   tags:
+  - Conferencing
+  - Zoom
+  - Tenants
+  tags_raw:
   - Conferencing
   - Zoom
   - Tenant
@@ -1217,6 +1254,8 @@ apis:
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/oai
   tags:
+  - Sendfeedback
+  tags_raw:
   - Send Feedback
   properties:
   - type: OpenAPI
