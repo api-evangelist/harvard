@@ -11,8 +11,42 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 6
 edges:
+- tag: Users
+  spec_file: harvard-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /users/register Users_registerOIDCUser; POST /users/token/recreate Users_recreateToken;
+    POST /users/{consumedIdentifier}/mergeIntoUser/{baseIdentifier}; POST /users/{identifier}/removeRoles
+  reason: Operations register OIDC users, manage API tokens, change user identifiers, merge accounts and
+    remove role grants — account and credential lifecycle plus permission inspection (allowedCollections/{permission}).
+    That is squarely Identity & Access Management rather than any HR or customer-data capability.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Datasets
+  spec_file: harvard-datasets-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.78
+  evidence: GET /datasets/listCurationStates Datasets_getCurationStates; GET /datasets/export Datasets_exportDataset;
+    POST /datasets/modifyRegistrationPIDMetadataAll
+  reason: 'Core research-data repository surface: dataset types, licences, curation states, persistent-identifier
+    metadata and export. This is management/curation of information assets (data cataloguing and stewardship),
+    not a domain-specific business process. L2 left null as it spans governance, metadata and publication.'
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Builtin Users
+  spec_file: harvard-builtin-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /builtin-users BuiltinUsers_create ... GET /builtin-users/{username}/api-token BuiltinUsers_getApiToken
+  reason: Operations create local user accounts and issue API tokens for them — account provisioning and
+    credential issuance, i.e. identity and access management. Thin surface, so moderate confidence.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Pids
   spec_file: harvard-pids-api-openapi.yml
   capability_id: BC-4780.40
@@ -25,3 +59,27 @@ edges:
     output including 'persistent identifiers', which is exactly what a DOI/PID provider surface does.
     Confidence held below 0.8 because the tag is thin (no schemas) and a reading as generic identifier
     plumbing is possible.
+- tag: Files
+  spec_file: harvard-files-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.7
+  evidence: GET /files/{id}/metadata Files_getFileMetadata; POST /files/{id}/metadata/categories Files_setFileCategories;
+    GET /files/{id}/downloadCount
+  reason: Manages data files held in the research repository and their metadata, categories, data tables
+    and usage counts — curation and stewardship of information assets. Generic L1 only.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Roles
+  spec_file: harvard-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /roles Roles_createNewRole; GET /roles/userSelectable Roles_getUserSelectableRoles; DELETE
+    /roles/{id} Roles_deleteRole
+  reason: The operations define and administer roles that govern what users may do within the Dataverse
+    installation — role definition and assignment is access management, not a domain business object.
+    Mapped to Identity & Access Management; confidence held moderate because the surface is narrow role
+    CRUD inside a single application rather than an enterprise IAM function.
+  recovered_from: sweep-20260829T005356Z-edges.json
