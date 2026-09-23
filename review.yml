@@ -2,40 +2,113 @@ name: Harvard University
 description: Harvard University public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/harvard/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-19'
 reviews:
-  - date: '2026-06-03'
-    rating: 4
-    summary: >-
-      Harvard has a strong, multi-unit public developer footprint. Two genuinely open
-      public APIs were verified live: the Harvard Art Museums API (api.harvardartmuseums.org,
-      free API key, non-commercial, ~2,500 calls/day) and the Harvard Library LibraryCloud
-      Item API (api.lib.harvard.edu/v2/items.json, no key — returned live MODS JSON with
-      630,138 results for a test query). The DASH institutional repository OAI-PMH endpoint
-      returned valid OAI-PMH 2.0 XML. HUIT operates a central API Portal cataloging
-      administrative APIs (Courses, Person, Dining, Zoom, Library Catalog, GenAI) whose
-      OpenAPI docs are public but whose base URLs are gated behind HarvardKey login and app
-      registration. GitHub presence verified across harvard, huit, harvardartmuseums, and
-      harvard-library orgs.
-    endpoints:
-      - url: https://api.harvardartmuseums.org
-        status: 200
-        note: Requires apikey param; docs at github.com/harvardartmuseums/api-docs.
-      - url: https://api.lib.harvard.edu/v2/items.json
-        status: 200
-        note: LibraryCloud Item API — no key; returned live MODS JSON.
-      - url: https://dash.harvard.edu/server/oai/request
-        status: 200
-        note: DASH OAI-PMH — Identify returned valid OAI-PMH 2.0 XML.
-      - url: https://portal.apis.huit.harvard.edu/apis
-        status: 200
-        note: HUIT API catalog; individual API base URLs gated behind HarvardKey.
-      - url: https://github.com/harvard
-        status: 200
-        note: Primary Harvard University GitHub org.
-      - url: https://status.huit.harvard.edu/
-        status: 200
-        note: HUIT status page.
-      - url: https://github.com/harvardlibrary
-        status: 404
-        note: Does not exist; correct org is github.com/harvard-library.
+- date: '2026-08-19'
+  rating: 4
+  method: probed
+  summary: 'University-pipeline re-profile with the operator axis applied. Harvard is one of the few institutions
+    in this cohort whose footprint SURVIVES the ownership check: nine of fourteen surfaces are institution-operated.
+    New institution surfaces found that the June 2026 profile missed entirely - Harvard Dataverse, which
+    serves a live 450-path OpenAPI 3.0.3 at /openapi from Harvard''s own AWS (and whose Dataverse software
+    is written by Harvard''s IQSS, so the contract is Harvard''s engineering, not a vendor''s); a Harvard
+    Dataverse OAI-PMH endpoint; Harvard''s Shibboleth IdP registered in InCommon with REFEDS SIRTFI; the
+    Harvard Law School Library Innovation Lab''s OpenAPI 3.1 Legal Ed Skills Hub; the Caselaw Access Project
+    bulk data; and Perma.cc. Five vendor tenancies were identified and RE-LABELLED rather than credited:
+    DASH (dash.harvard.edu CNAMEs to harvard-dash.prod.4science.cloud - a 4Science-managed DSpace, the
+    scholarbank.nus.edu.sg pattern), HOLLIS (Ex Libris Primo VE, vid 01HVD_INST:HVD2), harvard.figshare.com,
+    canvas.harvard.edu (Instructure) and harvard.zoom.us. The June profile recorded DASH as institution-owned;
+    DNS says otherwise. Two defects found: api.lib.harvard.edu returns a Tomcat HTML 500 for a non-numeric
+    limit parameter that should be a 400, and the Art Museums API returns a byte-identical 401 for a missing
+    and an invalid key. One agent-relevant finding: the whole harvard.edu Drupal estate answers automated
+    clients with an Akamai 403, and dash/dataverse serve a Human Verification challenge on their HTML
+    surfaces while leaving their APIs and OAI-PMH paths wide open.'
+  endpoints:
+  - url: https://dataverse.harvard.edu/openapi
+    status: 200
+    note: OpenAPI 3.0.3, 450 paths, 574 operations, Dataverse 6.10.1 build iqss-4. Institution.
+  - url: https://dataverse.harvard.edu/oai?verb=Identify
+    status: 200
+    note: Valid OAI-PMH 2.0. repositoryName "Harvard Dataverse Dataverse OAI Archive". Institution.
+  - url: https://api.lib.harvard.edu/v2/items.json?title=chess&limit=1
+    status: 200
+    note: LibraryCloud Item API, no key, live MODS JSON. Institution.
+  - url: https://api.lib.harvard.edu/v2/items.json?limit=notanumber
+    status: 500
+    note: DEFECT. Tomcat HTML 500 for a client input error that should be a 400.
+  - url: https://api.harvardartmuseums.org/object?apikey=notreal&size=1
+    status: 401
+    note: Identical to the no-key 401. Own app on Heroku, harvardartmuseums GitHub org. Institution.
+  - url: https://mdq.incommon.org/entities/https%3A%2F%2Ffed.huit.harvard.edu%2Fidp%2Fshibboleth
+    status: 200
+    note: Signed SAML 2.0 metadata, OrganizationName "Harvard College", SIRTFI + REFEDS R&S. Institution.
+  - url: https://harvard-lil.github.io/lawskills-hub/actions/openapi.yaml
+    status: 200
+    note: OpenAPI 3.1.0, servers[] self-declares the Harvard LIL org. Institution.
+  - url: https://api.case.law/v1/
+    status: 301
+    note: CAP REST API retired 2024, redirects to case.law/docs. Bulk data still Harvard-served.
+  - url: https://static.case.law/
+    status: 200
+    note: Harvard LIL bulk case-law data. Institution.
+  - url: https://api.perma.cc/v1/public/archives/?limit=1
+    status: 403
+    note: Cloudflare interstitial. Harvard LIL owns github.com/harvard-lil/perma; contents unreadable
+      to us.
+  - url: https://dash.harvard.edu/server/oai/request?verb=Identify
+    status: 200
+    note: TENANT. dash.harvard.edu -> dash.lib.harvard.edu -> harvard-dash.prod.4science.cloud.
+  - url: https://hollis.harvard.edu/
+    status: 200
+    note: TENANT. CNAME hvd.primo.exlibrisgroup.com; Primo VE vid=01HVD_INST:HVD2.
+  - url: https://canvas.harvard.edu/api/v1/accounts
+    status: 401
+    note: TENANT. CNAME harvard-vanity.instructure.com. Well-formed JSON 401 - Instructure's contract.
+  - url: https://harvard.figshare.com/
+    status: 202
+    note: TENANT. CNAME figshare.com. Relationship recorded; no Figshare contract saved here.
+  - url: https://portal.apis.huit.harvard.edu/apis
+    status: 200
+    note: Apigee portal, 2KB Angular shell. Catalog, base URLs and credentials all HarvardKey-gated.
+  - url: https://data.harvard.edu/
+    status: 403
+    note: Akamai Access Denied to every automated client. Live to a browser. Pointers dropped as unreadable,
+      not dead.
+  - url: https://api.datacite.org/prefixes/10.7910
+    status: 200
+    note: DataCite provider harvardu, client gdcc.harvard-dv. Evidence for the datacite conformance hit.
+  - url: https://api.crossref.org/members/14695
+    status: 200
+    note: Harvard Library, Crossref member, prefix 10.71303, 1 deposited DOI. Registered, not operational.
+- date: '2026-06-03'
+  rating: 4
+  summary: 'Harvard has a strong, multi-unit public developer footprint. Two genuinely open public APIs
+    were verified live: the Harvard Art Museums API (api.harvardartmuseums.org, free API key, non-commercial,
+    ~2,500 calls/day) and the Harvard Library LibraryCloud Item API (api.lib.harvard.edu/v2/items.json,
+    no key — returned live MODS JSON with 630,138 results for a test query). The DASH institutional repository
+    OAI-PMH endpoint returned valid OAI-PMH 2.0 XML. HUIT operates a central API Portal cataloging administrative
+    APIs (Courses, Person, Dining, Zoom, Library Catalog, GenAI) whose OpenAPI docs are public but whose
+    base URLs are gated behind HarvardKey login and app registration. GitHub presence verified across
+    harvard, huit, harvardartmuseums, and harvard-library orgs.'
+  endpoints:
+  - url: https://api.harvardartmuseums.org
+    status: 200
+    note: Requires apikey param; docs at github.com/harvardartmuseums/api-docs.
+  - url: https://api.lib.harvard.edu/v2/items.json
+    status: 200
+    note: LibraryCloud Item API — no key; returned live MODS JSON.
+  - url: https://dash.harvard.edu/server/oai/request
+    status: 200
+    note: DASH OAI-PMH — Identify returned valid OAI-PMH 2.0 XML.
+  - url: https://portal.apis.huit.harvard.edu/apis
+    status: 200
+    note: HUIT API catalog; individual API base URLs gated behind HarvardKey.
+  - url: https://github.com/harvard
+    status: 200
+    note: Primary Harvard University GitHub org.
+  - url: https://status.huit.harvard.edu/
+    status: 200
+    note: HUIT status page.
+  - url: https://github.com/harvardlibrary
+    status: 404
+    note: Does not exist; correct org is github.com/harvard-library.

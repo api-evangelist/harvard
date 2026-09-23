@@ -1,15 +1,8 @@
 openapi: 3.2.0
 info:
   title: Dataverse Harvest API
-  description: Live OpenAPI served by Harvard Dataverse at https://dataverse.harvard.edu/openapi. Dataverse is open-source research data repository software authored by Harvard's own Institute for Quantitative Social Science (github.com/IQSS/dataverse); this document is the software's generic contract as emitted by the Harvard installation (build iqss-4). The deployment, the data, the DOI prefix (10.7910, DataCite provider harvardu) and the operations are Harvard's; the contract text is shared with every other Dataverse installation.
+  description: Open source research data repository software.
   version: 6.10.1
-  contact:
-    name: Harvard Dataverse Support
-    email: support@dataverse.harvard.edu
-    url: https://dataverse.harvard.edu
-servers:
-- url: https://dataverse.harvard.edu
-  description: Harvard Dataverse production
 tags:
 - name: Harvest
 paths:
@@ -26,6 +19,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting clients harvesting clients
+      x-summary-source: derived
   /harvest/clients/{nickName}:
     get:
       operationId: HarvestingClients_harvestingClient
@@ -44,6 +39,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting clients harvesting client
+      x-summary-source: derived
     put:
       operationId: HarvestingClients_modifyHarvestingClient
       parameters:
@@ -61,6 +58,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting clients modify harvesting client
+      x-summary-source: derived
     post:
       operationId: HarvestingClients_createHarvestingClient
       parameters:
@@ -78,6 +77,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting clients create harvesting client
+      x-summary-source: derived
     delete:
       operationId: HarvestingClients_deleteHarvestingClient
       parameters:
@@ -91,6 +92,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting clients delete harvesting client
+      x-summary-source: derived
   /harvest/clients/{nickName}/run:
     post:
       operationId: HarvestingClients_startHarvestingJob
@@ -109,6 +112,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting clients start harvesting job
+      x-summary-source: derived
   /harvest/server/oaisets:
     get:
       operationId: HarvestingServer_oaiSets
@@ -122,6 +127,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting server oai sets
+      x-summary-source: derived
   /harvest/server/oaisets/add:
     post:
       operationId: HarvestingServer_createOaiSet
@@ -135,6 +142,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting server create oai set
+      x-summary-source: derived
   /harvest/server/oaisets/{specname}:
     get:
       operationId: HarvestingServer_oaiSet
@@ -153,6 +162,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting server oai set
+      x-summary-source: derived
     put:
       operationId: HarvestingServer_modifyOaiSet
       parameters:
@@ -170,6 +181,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting server modify oai set
+      x-summary-source: derived
     delete:
       operationId: HarvestingServer_deleteOaiSet
       parameters:
@@ -187,6 +200,8 @@ paths:
           description: OK
       tags:
       - Harvest
+      summary: Harvesting server delete oai set
+      x-summary-source: derived
   /harvest/server/oaisets/{specname}/datasets:
     get:
       operationId: HarvestingServer_oaiSetListDatasets
@@ -205,9 +220,5 @@ paths:
           description: OK
       tags:
       - Harvest
-x-operator: institution
-x-provenance:
-  generated: '2026-08-19'
-  method: searched
-  source: https://dataverse.harvard.edu/openapi
-  note: Fetched verbatim; pristine copy in openapi/_original/. servers[], info.contact and the info.description operator note were added on fetch because the emitted document carries no servers[] block. No paths, parameters or schemas were altered.
+      summary: Harvesting server oai set list datasets
+      x-summary-source: derived

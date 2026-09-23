@@ -1,15 +1,8 @@
 openapi: 3.2.0
 info:
   title: Dataverse Builtin Users API
-  description: Live OpenAPI served by Harvard Dataverse at https://dataverse.harvard.edu/openapi. Dataverse is open-source research data repository software authored by Harvard's own Institute for Quantitative Social Science (github.com/IQSS/dataverse); this document is the software's generic contract as emitted by the Harvard installation (build iqss-4). The deployment, the data, the DOI prefix (10.7910, DataCite provider harvardu) and the operations are Harvard's; the contract text is shared with every other Dataverse installation.
+  description: Open source research data repository software.
   version: 6.10.1
-  contact:
-    name: Harvard Dataverse Support
-    email: support@dataverse.harvard.edu
-    url: https://dataverse.harvard.edu
-servers:
-- url: https://dataverse.harvard.edu
-  description: Harvard Dataverse production
 tags:
 - name: Builtin Users
 paths:
@@ -34,6 +27,8 @@ paths:
           description: OK
       tags:
       - Builtin Users
+      summary: Builtin users save
+      x-summary-source: derived
   /builtin-users/{password}/{key}:
     post:
       operationId: BuiltinUsers_create
@@ -53,6 +48,8 @@ paths:
           description: OK
       tags:
       - Builtin Users
+      summary: Builtin users create
+      x-summary-source: derived
   /builtin-users/{password}/{key}/{sendEmailNotification}:
     post:
       operationId: BuiltinUsers_createWithNotification
@@ -77,6 +74,8 @@ paths:
           description: OK
       tags:
       - Builtin Users
+      summary: Builtin users create with notification
+      x-summary-source: derived
   /builtin-users/{username}/api-token:
     get:
       operationId: BuiltinUsers_getApiToken
@@ -95,9 +94,5 @@ paths:
           description: OK
       tags:
       - Builtin Users
-x-operator: institution
-x-provenance:
-  generated: '2026-08-19'
-  method: searched
-  source: https://dataverse.harvard.edu/openapi
-  note: Fetched verbatim; pristine copy in openapi/_original/. servers[], info.contact and the info.description operator note were added on fetch because the emitted document carries no servers[] block. No paths, parameters or schemas were altered.
+      summary: Builtin users get api token
+      x-summary-source: derived

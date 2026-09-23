@@ -1,15 +1,8 @@
 openapi: 3.2.0
 info:
   title: Dataverse Notifications API
-  description: Live OpenAPI served by Harvard Dataverse at https://dataverse.harvard.edu/openapi. Dataverse is open-source research data repository software authored by Harvard's own Institute for Quantitative Social Science (github.com/IQSS/dataverse); this document is the software's generic contract as emitted by the Harvard installation (build iqss-4). The deployment, the data, the DOI prefix (10.7910, DataCite provider harvardu) and the operations are Harvard's; the contract text is shared with every other Dataverse installation.
+  description: Open source research data repository software.
   version: 6.10.1
-  contact:
-    name: Harvard Dataverse Support
-    email: support@dataverse.harvard.edu
-    url: https://dataverse.harvard.edu
-servers:
-- url: https://dataverse.harvard.edu
-  description: Harvard Dataverse production
 tags:
 - name: Notifications
 paths:
@@ -40,6 +33,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications get all notifications for user
+      x-summary-source: derived
   /notifications/mutedEmails:
     get:
       operationId: Notifications_getMutedEmailsForUser
@@ -48,6 +43,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications get muted emails for user
+      x-summary-source: derived
   /notifications/mutedEmails/{typeName}:
     put:
       operationId: Notifications_muteEmailsForUser
@@ -62,6 +59,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications mute emails for user
+      x-summary-source: derived
     delete:
       operationId: Notifications_unmuteEmailsForUser
       parameters:
@@ -75,6 +74,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications unmute emails for user
+      x-summary-source: derived
   /notifications/mutedNotifications:
     get:
       operationId: Notifications_getMutedNotificationsForUser
@@ -83,6 +84,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications get muted notifications for user
+      x-summary-source: derived
   /notifications/mutedNotifications/{typeName}:
     put:
       operationId: Notifications_muteNotificationsForUser
@@ -97,6 +100,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications mute notifications for user
+      x-summary-source: derived
     delete:
       operationId: Notifications_unmuteNotificationsForUser
       parameters:
@@ -110,6 +115,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications unmute notifications for user
+      x-summary-source: derived
   /notifications/unreadCount:
     get:
       operationId: Notifications_getUnreadNotificationsCountForUser
@@ -118,6 +125,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications get unread notifications count for user
+      x-summary-source: derived
   /notifications/{id}:
     delete:
       operationId: Notifications_deleteNotificationForUser
@@ -133,6 +142,8 @@ paths:
           description: OK
       tags:
       - Notifications
+      summary: Notifications delete notification for user
+      x-summary-source: derived
   /notifications/{id}/markAsRead:
     put:
       operationId: Notifications_markNotificationAsReadForUser
@@ -148,9 +159,5 @@ paths:
           description: OK
       tags:
       - Notifications
-x-operator: institution
-x-provenance:
-  generated: '2026-08-19'
-  method: searched
-  source: https://dataverse.harvard.edu/openapi
-  note: Fetched verbatim; pristine copy in openapi/_original/. servers[], info.contact and the info.description operator note were added on fetch because the emitted document carries no servers[] block. No paths, parameters or schemas were altered.
+      summary: Notifications mark notification as read for user
+      x-summary-source: derived

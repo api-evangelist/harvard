@@ -1,15 +1,8 @@
 openapi: 3.2.0
 info:
   title: Dataverse Files API
-  description: Live OpenAPI served by Harvard Dataverse at https://dataverse.harvard.edu/openapi. Dataverse is open-source research data repository software authored by Harvard's own Institute for Quantitative Social Science (github.com/IQSS/dataverse); this document is the software's generic contract as emitted by the Harvard installation (build iqss-4). The deployment, the data, the DOI prefix (10.7910, DataCite provider harvardu) and the operations are Harvard's; the contract text is shared with every other Dataverse installation.
+  description: Open source research data repository software.
   version: 6.10.1
-  contact:
-    name: Harvard Dataverse Support
-    email: support@dataverse.harvard.edu
-    url: https://dataverse.harvard.edu
-servers:
-- url: https://dataverse.harvard.edu
-  description: Harvard Dataverse production
 tags:
 - name: Files
 paths:
@@ -21,6 +14,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get fixity algorithm
+      x-summary-source: derived
   /files/{id}:
     get:
       operationId: Files_getFileData
@@ -47,6 +42,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file data
+      x-summary-source: derived
     delete:
       operationId: Files_deleteFileInDataset
       parameters:
@@ -60,6 +57,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files delete file in dataset
+      x-summary-source: derived
   /files/{id}/dataTables:
     get:
       operationId: Files_getFileDataTables
@@ -74,6 +73,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file data tables
+      x-summary-source: derived
   /files/{id}/downloadCount:
     get:
       operationId: Files_getFileDownloadCount
@@ -88,6 +89,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file download count
+      x-summary-source: derived
   /files/{id}/externalTool/{tid}/toolUrl:
     post:
       operationId: Files_getExternalToolUrl
@@ -113,6 +116,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get external tool url
+      x-summary-source: derived
   /files/{id}/extractNcml:
     post:
       operationId: Files_extractNcml
@@ -127,6 +132,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files extract ncml
+      x-summary-source: derived
   /files/{id}/hasBeenDeleted:
     get:
       operationId: Files_getHasBeenDeleted
@@ -141,6 +148,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get has been deleted
+      x-summary-source: derived
   /files/{id}/metadata:
     get:
       operationId: Files_getFileMetadata
@@ -155,6 +164,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file metadata
+      x-summary-source: derived
     post:
       operationId: Files_updateFileMetadata
       parameters:
@@ -172,6 +183,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files update file metadata
+      x-summary-source: derived
   /files/{id}/metadata/categories:
     post:
       operationId: Files_setFileCategories
@@ -190,6 +203,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files set file categories
+      x-summary-source: derived
   /files/{id}/metadata/draft:
     get:
       operationId: Files_getFileMetadataDraft
@@ -204,6 +219,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file metadata draft
+      x-summary-source: derived
   /files/{id}/metadata/tabularTags:
     post:
       operationId: Files_setFileTabularTags
@@ -222,6 +239,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files set file tabular tags
+      x-summary-source: derived
   /files/{id}/metadata/{fmid}/toolparams/{tid}:
     get:
       operationId: Files_getExternalToolFMParams
@@ -252,6 +271,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get external tool FM params
+      x-summary-source: derived
   /files/{id}/prov-freeform:
     get:
       operationId: Prov_getProvFreeForm
@@ -266,6 +287,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Prov get prov free form
+      x-summary-source: derived
     post:
       operationId: Prov_addProvFreeForm
       parameters:
@@ -284,6 +307,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Prov add prov free form
+      x-summary-source: derived
   /files/{id}/prov-json:
     get:
       operationId: Prov_getProvJson
@@ -298,6 +323,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Prov get prov json
+      x-summary-source: derived
     post:
       operationId: Prov_addProvJson
       parameters:
@@ -320,6 +347,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Prov add prov json
+      x-summary-source: derived
     delete:
       operationId: Prov_deleteProvJson
       parameters:
@@ -333,6 +362,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Prov delete prov json
+      x-summary-source: derived
   /files/{id}/redetect:
     post:
       operationId: Files_redetectDatafile
@@ -351,6 +382,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files redetect datafile
+      x-summary-source: derived
   /files/{id}/reingest:
     post:
       operationId: Files_reingest
@@ -365,6 +398,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files reingest
+      x-summary-source: derived
   /files/{id}/restrict:
     put:
       operationId: Files_restrictFileInDataset
@@ -379,6 +414,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files restrict file in dataset
+      x-summary-source: derived
   /files/{id}/uningest:
     post:
       operationId: Files_uningestDatafile
@@ -393,6 +430,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files uningest datafile
+      x-summary-source: derived
   /files/{id}/versionDifferences:
     get:
       operationId: Files_getFileVersionsList
@@ -417,6 +456,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file versions list
+      x-summary-source: derived
   /files/{id}/versions/{datasetVersionId}:
     get:
       operationId: Files_getFileDataForVersion
@@ -448,6 +489,8 @@ paths:
           description: OK
       tags:
       - Files
+      summary: Files get file data for version
+      x-summary-source: derived
   /files/{id}/versions/{dsVersionString}/citation:
     get:
       operationId: Files_getFileCitationByVersion
@@ -471,9 +514,5 @@ paths:
           description: OK
       tags:
       - Files
-x-operator: institution
-x-provenance:
-  generated: '2026-08-19'
-  method: searched
-  source: https://dataverse.harvard.edu/openapi
-  note: Fetched verbatim; pristine copy in openapi/_original/. servers[], info.contact and the info.description operator note were added on fetch because the emitted document carries no servers[] block. No paths, parameters or schemas were altered.
+      summary: Files get file citation by version
+      x-summary-source: derived

@@ -1,18 +1,20 @@
-openapi: 3.2.0
+openapi: 3.1.0
 info:
-  title: Legal Ed Skills Hub Actions API
-  description: Progressively discover and load pedagogical AI skills for legal education. Start with the personas list, drill into a persona for its skill inventory, then fetch individual skill instructions and reference materials as needed.
+  title: Legal Ed Skills Hub
+  description: Progressively discover and load pedagogical AI skills for legal education.
+    Start with the personas list, drill into a persona for its skill inventory, then
+    fetch individual skill instructions and reference materials as needed.
   version: 1.0.0
 servers:
 - url: https://harvard-lil.github.io/lawskills-hub
-tags:
-- name: Actions
 paths:
   /actions/personas.json:
     get:
       operationId: listPersonas
       summary: List all available personas
-      description: Returns a lightweight index of all personas in the Legal Ed Skills Hub. Each entry includes the persona id, display label, headline, and number of skills. Use a persona id to fetch its full detail.
+      description: Returns a lightweight index of all personas in the Legal Ed Skills
+        Hub. Each entry includes the persona id, display label, headline, and number
+        of skills. Use a persona id to fetch its full detail.
       responses:
         '200':
           description: Persona index
@@ -20,20 +22,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PersonaIndex'
-      tags:
-      - Actions
   /actions/personas/{persona_id}.json:
     get:
       operationId: getPersona
       summary: Get full detail for one persona
-      description: Returns a persona's design principles, pedagogical objective, tone, and a list of available skills with descriptions. Use a skill name to fetch its full instructions.
+      description: Returns a persona's design principles, pedagogical objective, tone,
+        and a list of available skills with descriptions. Use a skill name to fetch
+        its full instructions.
       parameters:
       - name: persona_id
         in: path
         required: true
         schema:
           type: string
-          enum:
+          enum: &id001
           - professor
           - student
           - pro-se
@@ -47,25 +49,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PersonaDetail'
-      tags:
-      - Actions
   /actions/skills/{persona_id}/{skill_name}.json:
     get:
       operationId: getSkill
       summary: Get full skill instructions
-      description: Returns the complete skill instructions (the SKILL.md body) for one skill, plus metadata and a list of available reference documents. Follow the skill_body instructions to assist the user.
+      description: Returns the complete skill instructions (the SKILL.md body) for
+        one skill, plus metadata and a list of available reference documents. Follow
+        the skill_body instructions to assist the user.
       parameters:
       - name: persona_id
         in: path
         required: true
         schema:
           type: string
-          enum:
-          - professor
-          - student
-          - pro-se
-          - cle
-          - skill-developer
+          enum: *id001
         description: Persona identifier
       - name: skill_name
         in: path
@@ -95,25 +92,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SkillDetail'
-      tags:
-      - Actions
   /actions/skills/{persona_id}/{skill_name}/references/{ref_name}.json:
     get:
       operationId: getReference
       summary: Get a skill's reference document
-      description: Returns the content of a reference markdown document that accompanies a skill. Only fetch when the skill instructions direct you to.
+      description: Returns the content of a reference markdown document that accompanies
+        a skill. Only fetch when the skill instructions direct you to.
       parameters:
       - name: persona_id
         in: path
         required: true
         schema:
           type: string
-          enum:
-          - professor
-          - student
-          - pro-se
-          - cle
-          - skill-developer
+          enum: *id001
         description: Persona identifier
       - name: skill_name
         in: path
@@ -152,8 +143,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReferenceDetail'
-      tags:
-      - Actions
 components:
   schemas:
     PersonaIndex:
@@ -174,46 +163,15 @@ components:
                 description: Display name
               description:
                 type: string
-                description: 'When this persona applies: describes the type of user and tasks this persona handles. Use this to match against the user''s question.'
+                description: 'When this persona applies: describes the type of user
+                  and tasks this persona handles. Use this to match against the user''s
+                  question.'
               objective:
                 type: string
                 description: The persona's core pedagogical objective and constraint
               skill_count:
                 type: integer
                 description: Number of available skills
-    SkillDetail:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        version:
-          type: string
-        status:
-          type: string
-          enum:
-          - preview
-          - official
-          description: Release status of the skill
-        persona:
-          type: string
-        skill_body:
-          type: string
-          description: Complete skill instructions in markdown. Follow these to assist the user.
-        references:
-          type: array
-          description: Reference documents available for this skill
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              fetch_path:
-                type: string
-                description: Path to fetch reference content
-        usage_hint:
-          type: string
     PersonaDetail:
       type: object
       properties:
@@ -261,6 +219,40 @@ components:
                 type: boolean
               reference_count:
                 type: integer
+        usage_hint:
+          type: string
+    SkillDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+          enum:
+          - preview
+          - official
+          description: Release status of the skill
+        persona:
+          type: string
+        skill_body:
+          type: string
+          description: Complete skill instructions in markdown. Follow these to assist
+            the user.
+        references:
+          type: array
+          description: Reference documents available for this skill
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              fetch_path:
+                type: string
+                description: Path to fetch reference content
         usage_hint:
           type: string
     ReferenceDetail:

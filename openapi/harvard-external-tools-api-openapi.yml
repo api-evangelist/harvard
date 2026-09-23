@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  title: Dataverse External Tools API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: External Tools
+paths:
+  /externalTools:
+    get:
+      operationId: ExternalToolsApi_getExternalTools
+      responses:
+        '200':
+          description: OK
+      tags:
+      - External Tools
+      summary: External tools api get external tools
+      x-summary-source: derived
+    post:
+      operationId: ExternalToolsApi_addExternalTool
+      responses:
+        '200':
+          description: OK
+      tags:
+      - External Tools
+      summary: External tools api add external tool
+      x-summary-source: derived
+  /externalTools/{id}:
+    get:
+      operationId: ExternalToolsApi_getExternalTool
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - External Tools
+      summary: External tools api get external tool
+      x-summary-source: derived
+    delete:
+      operationId: ExternalToolsApi_deleteExternalTool
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - External Tools
+      summary: External tools api delete external tool
+      x-summary-source: derived

@@ -1,0 +1,71 @@
+generated: '2026-08-19'
+method: probed
+source: live HTTP probes of Harvard-operated hosts, 2026-08-19
+x-operator: institution
+description: >-
+  Verbatim response bodies captured from Harvard-operated surfaces on 2026-08-19. Every file in
+  this directory is a real response to a real request against a host under harvard.edu (or a
+  Harvard-owned GitHub org), not a hand-written or generated payload. Nothing here was fabricated
+  and nothing here was captured from a vendor's shared host.
+examples:
+  - file: harvard-librarycloud-item-response.json
+    request: GET https://api.lib.harvard.edu/v2/items.json?title=chess&limit=1
+    status: 200
+    surface: Harvard Library LibraryCloud (Open Metadata) Item API
+    x-operator: institution
+  - file: harvard-dash-oai-identify.xml
+    request: GET https://dash.harvard.edu/server/oai/request?verb=Identify
+    status: 200
+    surface: Harvard DASH OAI-PMH 2.0
+    x-operator: tenant
+    note: >-
+      repositoryName "Harvard DASH", repositoryIdentifier dash.harvard.edu.
+      dash.harvard.edu CNAMEs to harvard-dash.prod.4science.cloud, so the platform
+      is 4Science's managed DSpace and the operator is tenant, not institution.
+  - file: harvard-dataverse-oai-identify.xml
+    request: GET https://dataverse.harvard.edu/oai?verb=Identify
+    status: 200
+    surface: Harvard Dataverse OAI-PMH 2.0
+    x-operator: institution
+    note: repositoryName "Harvard Dataverse Dataverse OAI Archive", adminEmail support@dataverse.harvard.edu
+  - file: harvard-dataverse-search-response.json
+    request: GET https://dataverse.harvard.edu/api/search?q=climate&per_page=1
+    status: 200
+    surface: Harvard Dataverse native REST API
+    x-operator: institution
+  - file: harvard-incommon-idp-metadata.xml
+    request: GET https://mdq.incommon.org/entities/https%3A%2F%2Ffed.huit.harvard.edu%2Fidp%2Fshibboleth
+    status: 200
+    surface: Harvard University Shibboleth IdP, InCommon federation entry
+    x-operator: institution
+    note: >-
+      Signed SAML 2.0 EntityDescriptor. OrganizationName "Harvard College",
+      mdui:DisplayName "Harvard University", REFEDS SIRTFI assurance,
+      REFEDS Research and Scholarship entity category. Served by the InCommon
+      metadata query service; the entity itself is Harvard-operated.
+  - file: harvard-lil-lawskills-personas.json
+    request: GET https://harvard-lil.github.io/lawskills-hub/actions/personas.json
+    status: 200
+    surface: Legal Ed Skills Hub (Harvard Law School Library Innovation Lab)
+    x-operator: institution
+  - file: harvard-dash-dspace-rest-root.json
+    request: GET https://dash.harvard.edu/server/api
+    status: 200
+    surface: Harvard DASH DSpace 7 REST API root (application/hal+json)
+    x-operator: tenant
+    note: >-
+      DSpace 7 running on 4Science's managed cloud behind Harvard's hostname
+      (dash.harvard.edu -> dash.lib.harvard.edu -> harvard-dash.prod.4science.cloud).
+      The content and the DOIs are Harvard's; the REST contract is DSpace's and the
+      operations are 4Science's. No OpenAPI is emitted by this host - the root document
+      is a HAL discovery response. Captured as evidence of the tenant relationship, NOT
+      as a Harvard-authored contract.
+  - file: harvard-datacite-prefix-10.7910.json
+    request: GET https://api.datacite.org/prefixes/10.7910
+    status: 200
+    surface: DataCite registration evidence for Harvard Dataverse
+    x-operator: institution
+    note: >-
+      DataCite provider "harvardu" (Harvard University), repository client
+      "gdcc.harvard-dv" (Harvard Dataverse). This is the evidence behind the
+      datacite entry in conformance/.

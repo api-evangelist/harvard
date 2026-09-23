@@ -1,15 +1,8 @@
 openapi: 3.2.0
 info:
   title: Dataverse Users API
-  description: Live OpenAPI served by Harvard Dataverse at https://dataverse.harvard.edu/openapi. Dataverse is open-source research data repository software authored by Harvard's own Institute for Quantitative Social Science (github.com/IQSS/dataverse); this document is the software's generic contract as emitted by the Harvard installation (build iqss-4). The deployment, the data, the DOI prefix (10.7910, DataCite provider harvardu) and the operations are Harvard's; the contract text is shared with every other Dataverse installation.
+  description: Open source research data repository software.
   version: 6.10.1
-  contact:
-    name: Harvard Dataverse Support
-    email: support@dataverse.harvard.edu
-    url: https://dataverse.harvard.edu
-servers:
-- url: https://dataverse.harvard.edu
-  description: Harvard Dataverse production
 tags:
 - name: Users
 paths:
@@ -21,6 +14,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users get authenticated user by token
+      x-summary-source: derived
   /users/register:
     post:
       operationId: Users_registerOIDCUser
@@ -29,6 +24,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users register OIDC user
+      x-summary-source: derived
   /users/token:
     get:
       operationId: Users_getTokenExpirationDate
@@ -37,6 +34,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users get token expiration date
+      x-summary-source: derived
     delete:
       operationId: Users_deleteToken
       responses:
@@ -44,6 +43,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users delete token
+      x-summary-source: derived
   /users/token/recreate:
     post:
       operationId: Users_recreateToken
@@ -57,6 +58,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users recreate token
+      x-summary-source: derived
   /users/{consumedIdentifier}/mergeIntoUser/{baseIdentifier}:
     post:
       operationId: Users_mergeInAuthenticatedUser
@@ -76,6 +79,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users merge in authenticated user
+      x-summary-source: derived
   /users/{identifier}/allowedCollections/{permission}:
     get:
       operationId: Users_getUserPermittedCollections
@@ -95,6 +100,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users get user permitted collections
+      x-summary-source: derived
   /users/{identifier}/changeIdentifier/{newIdentifier}:
     post:
       operationId: Users_changeAuthenticatedUserIdentifier
@@ -114,6 +121,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users change authenticated user identifier
+      x-summary-source: derived
   /users/{identifier}/removeRoles:
     post:
       operationId: Users_removeUserRoles
@@ -128,6 +137,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users remove user roles
+      x-summary-source: derived
   /users/{identifier}/traces:
     get:
       operationId: Users_getTraces
@@ -142,6 +153,8 @@ paths:
           description: OK
       tags:
       - Users
+      summary: Users get traces
+      x-summary-source: derived
   /users/{identifier}/traces/{element}:
     get:
       operationId: Users_getTracesElement
@@ -161,9 +174,5 @@ paths:
           description: OK
       tags:
       - Users
-x-operator: institution
-x-provenance:
-  generated: '2026-08-19'
-  method: searched
-  source: https://dataverse.harvard.edu/openapi
-  note: Fetched verbatim; pristine copy in openapi/_original/. servers[], info.contact and the info.description operator note were added on fetch because the emitted document carries no servers[] block. No paths, parameters or schemas were altered.
+      summary: Users get traces element
+      x-summary-source: derived

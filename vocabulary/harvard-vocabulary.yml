@@ -1,0 +1,80 @@
+specification: API Commons Vocabulary
+specificationVersion: '0.1'
+provider: Harvard University
+providerId: harvard
+generated: '2026-08-19'
+method: derived
+source: >-
+  Terms extracted from artifacts Harvard actually serves - the Dataverse OpenAPI at
+  dataverse.harvard.edu/openapi, the LibraryCloud item response, the two OAI-PMH Identify
+  responses, the InCommon SAML metadata, and the Legal Ed Skills Hub OpenAPI - 2026-08-19.
+x-operator: institution
+description: >-
+  Harvard operates no institution-wide API vocabulary. What it has instead is five borrowed
+  standard vocabularies, one per unit, plus one small vocabulary of its own. This artifact
+  separates the two, because crediting Harvard for MODS or SAML would be crediting Harvard for
+  the Library of Congress's and OASIS's work. Only the terms under `institution_terms` are
+  Harvard's own coinage.
+borrowed_vocabularies:
+  - vocabulary: MODS (Metadata Object Description Schema)
+    owner: Library of Congress
+    used_by: Harvard Library LibraryCloud Item API
+    evidence: examples/harvard-librarycloud-item-response.json
+  - vocabulary: Dublin Core (oai_dc)
+    owner: DCMI
+    used_by: Harvard DASH and Harvard Dataverse OAI-PMH endpoints
+    evidence: examples/harvard-dash-oai-identify.xml
+  - vocabulary: OAI-PMH 2.0
+    owner: Open Archives Initiative
+    used_by: dash.harvard.edu, dataverse.harvard.edu
+    terms: [verb, Identify, ListRecords, ListSets, GetRecord, resumptionToken, repositoryIdentifier, granularity, deletedRecord]
+    evidence: examples/harvard-dataverse-oai-identify.xml
+  - vocabulary: SAML 2.0 metadata + Shibboleth + REFEDS entity categories
+    owner: OASIS / Internet2 / REFEDS
+    used_by: Harvard University Shibboleth IdP
+    terms: [EntityDescriptor, entityID, IDPSSODescriptor, SingleSignOnService, mdui:DisplayName, sirtfi, research-and-scholarship]
+    evidence: examples/harvard-incommon-idp-metadata.xml
+  - vocabulary: DSpace 7 HAL REST vocabulary
+    owner: LYRASIS / DSpace community, deployed by 4Science
+    x-operator: tenant
+    used_by: dash.harvard.edu/server/api
+    evidence: examples/harvard-dash-dspace-rest-root.json
+  - vocabulary: Dataverse API vocabulary
+    owner: >-
+      Harvard's own Institute for Quantitative Social Science, as the authors of the Dataverse
+      open-source project - this is the one borrowed vocabulary Harvard also wrote.
+    used_by: dataverse.harvard.edu
+    terms: [dataverse, dataset, datafile, persistentId, datasetVersion, harvestingClient, metadataBlock, guestbook, dataverseRole]
+    evidence: openapi/_original/harvard-dataverse-openapi.yml
+institution_terms:
+  - term: persona
+    definition: >-
+      A named audience the Legal Ed Skills Hub organizes its pedagogical agent skills around -
+      professor, student, pro-se, cle, skill-developer. Harvard LIL's own coinage.
+    source: openapi/harvard-lil-legal-ed-skills-hub-openapi.yml
+  - term: skill
+    definition: >-
+      A discrete, loadable set of instructions (a SKILL.md body plus metadata and reference
+      documents) an agent fetches on demand for one persona.
+    source: openapi/harvard-lil-legal-ed-skills-hub-openapi.yml
+  - term: HarvardKey
+    definition: >-
+      Harvard's institution-wide credential, backed by the Shibboleth IdP at
+      entityID https://fed.huit.harvard.edu/idp/shibboleth. It is the gate on the HUIT API
+      Portal and therefore on every administrative API Harvard runs.
+    source: https://portal.apis.huit.harvard.edu/
+  - term: DASH
+    definition: >-
+      Digital Access to Scholarship at Harvard - the open-access institutional repository,
+      running DSpace 7 on Harvard's own host.
+    source: examples/harvard-dash-oai-identify.xml
+  - term: LibraryCloud
+    definition: >-
+      Harvard Library's open metadata hub, aggregating bibliographic, image and finding-aid
+      metadata behind a single unauthenticated Item API.
+    source: https://library.harvard.edu/services-tools/harvard-library-apis-datasets
+finding: >-
+  The vocabulary picture is the operator picture in miniature. Four of six vocabularies Harvard
+  serves are somebody else's; the fifth is Harvard's own but shared with every other Dataverse
+  installation in the world; only the sixth, a 2026 experiment from a law-school lab, is
+  vocabulary Harvard both wrote and exclusively operates.

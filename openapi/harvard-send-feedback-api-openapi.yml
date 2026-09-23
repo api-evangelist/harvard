@@ -1,18 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Dataverse Logout API
+  title: Dataverse Sendfeedback API
   description: Open source research data repository software.
   version: 6.10.1
 tags:
-- name: Logout
+- name: Send Feedback
 paths:
-  /logout:
+  /sendfeedback:
     post:
-      operationId: Logout_logout
+      operationId: SendFeedbackAPI_submitFeedback
       responses:
         '200':
           description: OK
       tags:
-      - Logout
-      summary: Logout logout
+      - Send Feedback
+      summary: Send feedback API submit feedback
       x-summary-source: derived

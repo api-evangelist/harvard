@@ -1,0 +1,88 @@
+specification: API Commons Errors
+specificationVersion: '0.1'
+provider: Harvard University
+providerId: harvard
+generated: '2026-08-19'
+method: probed
+source: Deliberate failure probes against each institution-operated surface, 2026-08-19.
+x-operator: institution
+description: >-
+  Error semantics observed by actually making bad requests, not by reading documentation.
+  Harvard has four different error contracts across five surfaces and no institution-wide
+  convention. Two findings are worth naming: LibraryCloud returns a Tomcat HTML 500 stack page
+  for a malformed client parameter that should be a 400, and the Art Museums API returns the
+  same undifferentiated 401 for a missing key and an invalid key. The OAI-PMH endpoints are the
+  best behaved because the protocol dictates the error format.
+errors:
+  - surface: Harvard Art Museums API
+    request: GET https://api.harvardartmuseums.org/object?size=1
+    status: 401
+    content_type: text/plain; charset=utf-8
+    body: Unauthorized
+    shape: bare string
+    machine_readable: false
+    finding: >-
+      No error code, no JSON envelope, no remediation link. A missing key and an invalid key
+      (apikey=notreal) produce byte-identical responses, so a client cannot distinguish
+      "you forgot to authenticate" from "your key was revoked".
+  - surface: Harvard Library LibraryCloud Item API
+    request: GET https://api.lib.harvard.edu/v2/items.json?limit=notanumber
+    status: 500
+    content_type: text/html;charset=utf-8
+    shape: Apache Tomcat HTML error page
+    machine_readable: false
+    finding: >-
+      DEFECT. A non-numeric limit is a client error and should return 400. The service instead
+      returns a 500 carrying a Tomcat "HTTP Status 500 - Internal Server Error" HTML page.
+      An agent parsing JSON gets HTML, and a retrying client will retry a request that can
+      never succeed.
+  - surface: Harvard DASH OAI-PMH (tenant - 4Science managed DSpace)
+    x-operator: tenant
+    request: GET https://dash.harvard.edu/server/oai/request?verb=Bogus
+    status: 200
+    content_type: text/xml;charset=UTF-8
+    shape: OAI-PMH error element
+    body_fragment: '<error code="badVerb">Illegal verb</error>'
+    machine_readable: true
+    finding: >-
+      Protocol-correct. OAI-PMH mandates HTTP 200 with an in-body <error code="..."> element,
+      and the DSpace installation behind dash.harvard.edu honours it. Neither the error
+      vocabulary nor the implementation is Harvard's - the vocabulary is the OAI-PMH
+      specification's and the platform is 4Science's. Not credited to Harvard.
+  - surface: Harvard Dataverse native REST API
+    request: GET https://dataverse.harvard.edu/api/datasets/999999999
+    status: 404
+    content_type: application/json;charset=UTF-8
+    shape: '{"status":"ERROR","message":"..."}'
+    body: '{"status":"ERROR","message":"Dataset with ID 999999999 not found."}'
+    machine_readable: true
+    finding: >-
+      Consistent structured JSON envelope with a correct status code and a human-readable
+      message. No machine-stable error code field and no RFC 9457 problem+json, but the shape
+      is stable across the surface. This is the best error contract Harvard operates.
+  - surface: Harvard Dataverse native REST API
+    request: GET https://dataverse.harvard.edu/api/admin/isOrcid
+    status: 403
+    content_type: text/html
+    shape: Apache HTML 403
+    machine_readable: false
+    finding: >-
+      Administrative paths are correctly refused, but the refusal is emitted by Apache ahead of
+      the application, so it breaks the JSON envelope the rest of the API maintains.
+  - surface: Harvard Drupal estate (data.harvard.edu, huit.harvard.edu, provost.harvard.edu, scholar.harvard.edu)
+    request: GET https://data.harvard.edu/
+    status: 403
+    content_type: text/html
+    shape: Akamai "Access Denied" page with an edgesuite reference id
+    machine_readable: false
+    finding: >-
+      NOT an application error and NOT a dead host. data.harvard.edu resolves through
+      edge.drupalsites.harvard.edu -> huit.edgesuite.net -> Akamai, and the whole Harvard
+      Drupal estate returns 403 Access Denied to non-browser clients regardless of
+      User-Agent or header set. The sites are live to a human browser. Recorded here because
+      it is the single largest thing standing between Harvard and an agent-readable footprint.
+no_convention:
+  finding: >-
+    Five surfaces, four incompatible error contracts, zero shared error vocabulary and no
+    RFC 7807/9457 problem+json anywhere. There is no institution-level error standard to
+    document because there is no institution-level API program.
