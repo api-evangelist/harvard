@@ -1999,7 +1999,7 @@ paths:
       x-summary-source: derived
   /admin/settings/{name}/lang/{lang}:
     get:
-      operationId: Admin_getSetting
+      operationId: getAdminSettingsByNameLangByLang
       parameters:
       - name: lang
         in: path
@@ -2018,6 +2018,8 @@ paths:
       - Admin
       summary: Admin get setting
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Admin_getSetting
     put:
       operationId: Admin_putSettingLang
       parameters:

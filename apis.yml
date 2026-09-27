@@ -20,15 +20,22 @@ x-type: university
 x-category: Private Research University
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - harvard-library/librarycloud
+    - harvard-lil/lawskills-hub
+    - harvard-lil/perma
+    - iqss/dataverse
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -47,6 +54,22 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/harvard.png
 url: https://raw.githubusercontent.com/api-evangelist/harvard/refs/heads/main/apis.yml
 tags:
+- University
+- Higher Education
+- Education
+- United States
+- Ivy League
+- Private Research University
+- Research Data
+- Research Repository
+- Open Metadata
+- OAI-PMH
+- Identity Federation
+- Library
+- Museums
+- Course Catalog
+- Research Computing
+tags_raw:
 - University
 - Higher Education
 - Education
@@ -150,6 +173,12 @@ apis:
   humanURL: https://library.harvard.edu/services-tools/harvard-library-apis-datasets
   baseURL: https://api.lib.harvard.edu/v2/items.json
   tags:
+  - Library
+  - Open Metadata
+  - Bibliographic
+  - MODS
+  - Dublin Core
+  tags_raw:
   - Libraries
   - Open Metadata
   - Bibliographic
@@ -1254,8 +1283,6 @@ apis:
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/oai
   tags:
-  - Sendfeedback
-  tags_raw:
   - Send Feedback
   properties:
   - type: OpenAPI
