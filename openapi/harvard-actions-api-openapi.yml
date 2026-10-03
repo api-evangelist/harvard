@@ -156,51 +156,6 @@ paths:
       - Actions
 components:
   schemas:
-    ReferenceDetail:
-      type: object
-      properties:
-        name:
-          type: string
-        skill:
-          type: string
-        persona:
-          type: string
-        content:
-          type: string
-          description: Full markdown content of the reference document
-    SkillDetail:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        version:
-          type: string
-        status:
-          type: string
-          enum:
-          - preview
-          - official
-          description: Release status of the skill
-        persona:
-          type: string
-        skill_body:
-          type: string
-          description: Complete skill instructions in markdown. Follow these to assist the user.
-        references:
-          type: array
-          description: Reference documents available for this skill
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              fetch_path:
-                type: string
-                description: Path to fetch reference content
-        usage_hint:
-          type: string
     PersonaDetail:
       type: object
       properties:
@@ -250,6 +205,51 @@ components:
                 type: integer
         usage_hint:
           type: string
+    SkillDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+          enum:
+          - preview
+          - official
+          description: Release status of the skill
+        persona:
+          type: string
+        skill_body:
+          type: string
+          description: Complete skill instructions in markdown. Follow these to assist the user.
+        references:
+          type: array
+          description: Reference documents available for this skill
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              fetch_path:
+                type: string
+                description: Path to fetch reference content
+        usage_hint:
+          type: string
+    ReferenceDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        skill:
+          type: string
+        persona:
+          type: string
+        content:
+          type: string
+          description: Full markdown content of the reference document
     PersonaIndex:
       type: object
       properties:
