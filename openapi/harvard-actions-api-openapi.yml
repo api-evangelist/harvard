@@ -156,6 +156,43 @@ paths:
       - Actions
 components:
   schemas:
+    ReferenceDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        skill:
+          type: string
+        persona:
+          type: string
+        content:
+          type: string
+          description: Full markdown content of the reference document
+    PersonaIndex:
+      type: object
+      properties:
+        description:
+          type: string
+        personas:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Persona identifier
+              label:
+                type: string
+                description: Display name
+              description:
+                type: string
+                description: 'When this persona applies: describes the type of user and tasks this persona handles. Use this to match against the user''s question.'
+              objective:
+                type: string
+                description: The persona's core pedagogical objective and constraint
+              skill_count:
+                type: integer
+                description: Number of available skills
     PersonaDetail:
       type: object
       properties:
@@ -238,40 +275,3 @@ components:
                 description: Path to fetch reference content
         usage_hint:
           type: string
-    ReferenceDetail:
-      type: object
-      properties:
-        name:
-          type: string
-        skill:
-          type: string
-        persona:
-          type: string
-        content:
-          type: string
-          description: Full markdown content of the reference document
-    PersonaIndex:
-      type: object
-      properties:
-        description:
-          type: string
-        personas:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Persona identifier
-              label:
-                type: string
-                description: Display name
-              description:
-                type: string
-                description: 'When this persona applies: describes the type of user and tasks this persona handles. Use this to match against the user''s question.'
-              objective:
-                type: string
-                description: The persona's core pedagogical objective and constraint
-              skill_count:
-                type: integer
-                description: Number of available skills
