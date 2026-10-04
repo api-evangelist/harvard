@@ -1283,6 +1283,8 @@ apis:
   humanURL: https://dataverse.harvard.edu/
   baseURL: https://dataverse.harvard.edu/oai
   tags:
+  - Sendfeedback
+  tags_raw:
   - Send Feedback
   properties:
   - type: OpenAPI
