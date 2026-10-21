@@ -48,3 +48,52 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: harvard-iiif-consortium
+  label: IIIF Consortium
+  partner_name: IIIF Consortium
+  category: image interoperability standards consortium membership
+  type: register
+  channel: standard-directory
+  evidence: https://iiif.io/community/consortium/members/#full-members
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: IIIF Consortium members (iiif.io/community/consortium/members/)
+    standard: IIIF (International Image Interoperability Framework)
+    spec_file: null
+    role: iiif-consortium-member
+    registered_name: Harvard University
+    register_id: http://iiif.harvard.edu
+    matched_domain: harvard.edu
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: consortium membership funds and governs the IIIF APIs; the level is partner_tier,
+      never counted; membership is not conformance'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: harvard-linked-art-community
+  label: Linked Art community
+  partner_name: Linked Art community
+  category: cultural heritage linked data community
+  type: register
+  channel: standard-directory
+  evidence: https://linked.art/community/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Linked Art community institutions (linked.art/community/)
+    standard: Linked Art
+    spec_file: null
+    role: linked-art-institution
+    registered_name: Harvard University (I Tatti)
+    register_id: https://linked.art/community/#institutions
+    matched_domain: harvard.edu
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: an institution in the Linked Art community (names only on the page)'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+    identity: wikidata Q13371 'Harvard University' P856 https://harvard.edu
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
