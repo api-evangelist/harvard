@@ -1,0 +1,178 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Users API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Users
+paths:
+  /users/:me:
+    get:
+      operationId: Users_getAuthenticatedUserByToken
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users get authenticated user by token
+      x-summary-source: derived
+  /users/register:
+    post:
+      operationId: Users_registerOIDCUser
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users register OIDC user
+      x-summary-source: derived
+  /users/token:
+    get:
+      operationId: Users_getTokenExpirationDate
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users get token expiration date
+      x-summary-source: derived
+    delete:
+      operationId: Users_deleteToken
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users delete token
+      x-summary-source: derived
+  /users/token/recreate:
+    post:
+      operationId: Users_recreateToken
+      parameters:
+      - name: returnExpiration
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users recreate token
+      x-summary-source: derived
+  /users/{consumedIdentifier}/mergeIntoUser/{baseIdentifier}:
+    post:
+      operationId: Users_mergeInAuthenticatedUser
+      parameters:
+      - name: baseIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumedIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users merge in authenticated user
+      x-summary-source: derived
+  /users/{identifier}/allowedCollections/{permission}:
+    get:
+      operationId: Users_getUserPermittedCollections
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: permission
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users get user permitted collections
+      x-summary-source: derived
+  /users/{identifier}/changeIdentifier/{newIdentifier}:
+    post:
+      operationId: Users_changeAuthenticatedUserIdentifier
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: newIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users change authenticated user identifier
+      x-summary-source: derived
+  /users/{identifier}/removeRoles:
+    post:
+      operationId: Users_removeUserRoles
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users remove user roles
+      x-summary-source: derived
+  /users/{identifier}/traces:
+    get:
+      operationId: Users_getTraces
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users get traces
+      x-summary-source: derived
+  /users/{identifier}/traces/{element}:
+    get:
+      operationId: Users_getTracesElement
+      parameters:
+      - name: element
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Users
+      summary: Users get traces element
+      x-summary-source: derived

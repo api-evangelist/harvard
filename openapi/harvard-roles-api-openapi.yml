@@ -1,0 +1,64 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Roles API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Roles
+paths:
+  /roles:
+    post:
+      operationId: Roles_createNewRole
+      parameters:
+      - name: dvo
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Roles
+      summary: Roles create new role
+      x-summary-source: derived
+  /roles/userSelectable:
+    get:
+      operationId: Roles_getUserSelectableRoles
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Roles
+      summary: Roles get user selectable roles
+      x-summary-source: derived
+  /roles/{id}:
+    get:
+      operationId: Roles_viewRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Roles
+      summary: Roles view role
+      x-summary-source: derived
+    delete:
+      operationId: Roles_deleteRole
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Roles
+      summary: Roles delete role
+      x-summary-source: derived

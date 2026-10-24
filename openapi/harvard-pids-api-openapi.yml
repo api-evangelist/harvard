@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Pids API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Pids
+paths:
+  /pids:
+    get:
+      operationId: Pids_getPid
+      parameters:
+      - name: persistentId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Pids
+      summary: Pids get pid
+      x-summary-source: derived
+  /pids/providers:
+    get:
+      operationId: Pids_getPidProviders
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Pids
+      summary: Pids get pid providers
+      x-summary-source: derived
+  /pids/providers/{persistentId}:
+    get:
+      operationId: Pids_getPidProviderId
+      parameters:
+      - name: persistentId
+        in: path
+        required: true
+        schema:
+          pattern: .+
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Pids
+      summary: Pids get pid provider id
+      x-summary-source: derived
+  /pids/unreserved:
+    get:
+      operationId: Pids_getUnreserved
+      parameters:
+      - name: persistentId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Pids
+      summary: Pids get unreserved
+      x-summary-source: derived
+  /pids/{id}/delete:
+    delete:
+      operationId: Pids_deletePid
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Pids
+      summary: Pids delete pid
+      x-summary-source: derived
+  /pids/{id}/reserve:
+    post:
+      operationId: Pids_reservePid
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Pids
+      summary: Pids reserve pid
+      x-summary-source: derived

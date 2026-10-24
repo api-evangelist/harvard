@@ -1,0 +1,18 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Logout API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Logout
+paths:
+  /logout:
+    post:
+      operationId: Logout_logout
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Logout
+      summary: Logout logout
+      x-summary-source: derived

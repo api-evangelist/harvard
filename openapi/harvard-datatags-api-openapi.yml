@@ -1,0 +1,24 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Datatags API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Datatags
+paths:
+  /datatags/receiveTags/{uniqueCacheId}:
+    post:
+      operationId: DataTagsAPI_receiveTags
+      parameters:
+      - name: uniqueCacheId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Datatags
+      summary: Data tags API receive tags
+      x-summary-source: derived

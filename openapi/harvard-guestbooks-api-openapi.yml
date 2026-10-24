@@ -1,0 +1,78 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Guestbooks API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Guestbooks
+paths:
+  /guestbooks/{identifier}:
+    post:
+      operationId: Guestbooks_createGuestbook
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Guestbooks
+      summary: Guestbooks create guestbook
+      x-summary-source: derived
+  /guestbooks/{identifier}/list:
+    get:
+      operationId: Guestbooks_getGuestbooks
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Guestbooks
+      summary: Guestbooks get guestbooks
+      x-summary-source: derived
+  /guestbooks/{identifier}/{id}/enabled:
+    put:
+      operationId: Guestbooks_enableGuestbook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Guestbooks
+      summary: Guestbooks enable guestbook
+      x-summary-source: derived
+  /guestbooks/{id}:
+    get:
+      operationId: Guestbooks_getGuestbook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Guestbooks
+      summary: Guestbooks get guestbook
+      x-summary-source: derived

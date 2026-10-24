@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Licenses API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Licenses
+paths:
+  /licenses:
+    get:
+      operationId: Licenses_getLicenses
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses get licenses
+      x-summary-source: derived
+    post:
+      operationId: Licenses_addLicense
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses add license
+      x-summary-source: derived
+  /licenses/default:
+    get:
+      operationId: Licenses_getDefault
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses get default
+      x-summary-source: derived
+  /licenses/default/{id}:
+    put:
+      operationId: Licenses_setDefault
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses set default
+      x-summary-source: derived
+  /licenses/{id}:
+    get:
+      operationId: Licenses_getLicenseById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses get license by id
+      x-summary-source: derived
+    delete:
+      operationId: Licenses_deleteLicenseById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses delete license by id
+      x-summary-source: derived
+  /licenses/{id}/:active/{activeState}:
+    put:
+      operationId: Licenses_setActiveState
+      parameters:
+      - name: activeState
+        in: path
+        required: true
+        schema:
+          type: boolean
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses set active state
+      x-summary-source: derived
+  /licenses/{id}/:sortOrder/{sortOrder}:
+    put:
+      operationId: Licenses_setSortOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: sortOrder
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Licenses
+      summary: Licenses set sort order
+      x-summary-source: derived

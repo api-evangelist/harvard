@@ -1,0 +1,18 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Datasetfields API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: Datasetfields
+paths:
+  /datasetfields/facetables:
+    get:
+      operationId: DatasetFields_listAllFacetableDatasetFields
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Datasetfields
+      summary: Dataset fields list all facetable dataset fields
+      x-summary-source: derived

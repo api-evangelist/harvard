@@ -1,0 +1,30 @@
+openapi: 3.2.0
+info:
+  title: Dataverse Upload Dataset Logo API
+  description: Open source research data repository software.
+  version: 6.10.1
+tags:
+- name: uploadDatasetLogo
+  description: Uploads a logo for a dataset
+paths:
+  /datasets/{id}/thumbnail:
+    post:
+      tags:
+      - uploadDatasetLogo
+      summary: Uploads a logo for a dataset
+      operationId: Datasets_uploadDatasetLogo
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              format: binary
+              type: string
+      responses:
+        '200':
+          description: Dataset logo uploaded successfully
